@@ -5,6 +5,7 @@ public class CompanyProject {
     private String PTitle;
     private ArrayList<String> ProjectContacts;
     private int ProjectPhase;
+//project can only have 6 emails for a phase
     private ArrayList[] ProjectEmails = new ArrayList[6];
 
     public CompanyProject() {
@@ -12,7 +13,10 @@ public class CompanyProject {
         PID = CompanyEmailSystem.GlobalProjectCounter;
         PTitle = "New Project";
         ProjectContacts = new ArrayList<>();
-        ProjectPhase = 1;
+//        project  should start with phase: feasibility
+//        ProjectPhase = 1;
+//        bug fix by Raigo Jerva
+        ProjectPhase = 0;
         ProjectEmails[ProjectPhase] = new ArrayList<CompanyEmail>();
     }
 
@@ -21,7 +25,10 @@ public class CompanyProject {
         PID = CompanyEmailSystem.GlobalProjectCounter;
         PTitle = pTitle;
         ProjectContacts = new ArrayList<>();
-        ProjectPhase = 1;
+//        project  should start with phase: feasibility
+//        ProjectPhase = 1;
+//        bug fix by Raigo Jerva
+        ProjectPhase = 0;
         ProjectEmails[ProjectPhase] = new ArrayList<CompanyEmail>();
     }
 
