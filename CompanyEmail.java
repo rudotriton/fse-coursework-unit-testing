@@ -31,7 +31,10 @@ public class CompanyEmail {
     }
 
     public String emailMessage() {
-        return emailMessage();
+//    recursive call to method
+//    bug fix by Raigo Jerva
+//      return emailMessage();
+        return emailMessage;
     }
 
     public void setFrom(String fromAddr) {
