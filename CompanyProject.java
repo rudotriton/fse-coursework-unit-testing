@@ -12,10 +12,7 @@ public class CompanyProject {
         PID = CompanyEmailSystem.GlobalProjectCounter;
         PTitle = "New Project";
         ProjectContacts = new ArrayList<>();
-//        project  should start with phase: feasibility
-//        ProjectPhase = 1;
-//        bug fix by Raigo Jerva
-        ProjectPhase = 0;
+        ProjectPhase = 1;
         ProjectEmails[ProjectPhase] = new ArrayList<CompanyEmail>();
     }
 
@@ -24,10 +21,7 @@ public class CompanyProject {
         PID = CompanyEmailSystem.GlobalProjectCounter;
         PTitle = pTitle;
         ProjectContacts = new ArrayList<>();
-//        project  should start with phase: feasibility
-//        ProjectPhase = 1;
-//        bug fix by Raigo Jerva
-        ProjectPhase = 0;
+        ProjectPhase = 1;
         ProjectEmails[ProjectPhase] = new ArrayList<CompanyEmail>();
     }
 
@@ -68,9 +62,8 @@ public class CompanyProject {
         return ProjectEmails[ProjectPhase];
     }
 
-//    Since phase 1 is at index 0, then the parameter is reduced by 1
     public ArrayList<CompanyEmail> getEmailsForPhase(int thePhase) {
-        return ProjectEmails[thePhase - 1];
+        return ProjectEmails[thePhase];
     }
 
     public boolean nextPhase() {
@@ -85,7 +78,8 @@ public class CompanyProject {
     }
 
     public String getPhaseByName() {
-        return CompanyEmailSystem.ProjectPhases[ProjectPhase];
+//        ProjectPhases array starts at index 0 with the first phase - Raigo
+        return CompanyEmailSystem.ProjectPhases[ProjectPhase - 1];
     }
 
     public int getPhaseByID() {

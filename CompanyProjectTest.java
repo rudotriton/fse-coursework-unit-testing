@@ -9,9 +9,9 @@ public class CompanyProjectTest {
 //    Test by Raigo Jerva
     @org.junit.Test
     public void getPID() {
+        CompanyEmailSystem.GlobalProjectCounter = 0;
         CompanyProject cp = new CompanyProject();
-        int pid = cp.getPID();
-        assertEquals(1, pid);
+        assertEquals(1, cp.getPID());
     }
 
 //    Test by Raigo Jerva
@@ -59,9 +59,34 @@ public class CompanyProjectTest {
         cp.addContact(email);
     }
 
+//    Test by Raigo Jerva
     @org.junit.Test
     public void addEmail() {
-        fail("No test supplied");
+        CompanyProject cp = new CompanyProject();
+        String from = "sender@email.com";
+        String to = "receiver@email.com";
+        String subject = "test email";
+        String message = "email message";
+
+        CompanyEmail ce = new CompanyEmail(from, to, subject, message);
+        cp.addEmail(ce);
+        ArrayList<String> contacts = cp.getProjectContacts();
+        assertEquals(from, contacts.get(0));
+    }
+
+//    Test by Raigo Jerva
+    @org.junit.Test
+    public void addEmail_invalidEmail() {
+        CompanyProject cp = new CompanyProject();
+        String from = "sender@email.com";
+        String to = "receiver@email.com";
+
+        String message = "email message";
+
+        CompanyEmail ce = new CompanyEmail(from, to, null, message);
+        cp.addEmail(ce);
+        ArrayList<String> contacts = cp.getProjectContacts();
+        assertEquals(0, contacts.size());
     }
 
 //    Test by Raigo Jerva
@@ -87,7 +112,7 @@ public class CompanyProjectTest {
     @org.junit.Test
     public void getEmailsForPhase_certainPhase() {
         CompanyProject cp = new CompanyProject();
-//        advance phase twice to implementation phase
+//        advance phase twice to Implementation phase
         cp.nextPhase();
         cp.nextPhase();
 
@@ -106,29 +131,58 @@ public class CompanyProjectTest {
         assertEquals(message, email.emailMessage());
     }
 
+//    Test by Raigo Jerva
     @org.junit.Test
     public void nextPhase() {
-        fail("No test supplied");
+        CompanyProject cp = new CompanyProject();
+        cp.nextPhase();
+        assertEquals("Design", cp.getPhaseByName());
     }
 
+//    Test by Raigo Jerva
     @org.junit.Test
     public void getPhaseByName() {
-        fail("No test supplied");
+        CompanyProject cp = new CompanyProject();
+        assertEquals("Feasibility", cp.getPhaseByName());
     }
 
+//    Test by Raigo Jerva
     @org.junit.Test
     public void getPhaseByID() {
-        fail("No test supplied");
+        CompanyProject cp = new CompanyProject();
+        assertEquals(1, cp.getPhaseByID());
     }
 
+//    Test by Raigo Jerva
     @org.junit.Test
     public void getProjectContacts() {
-        fail("No test supplied");
+        CompanyProject cp = new CompanyProject();
+        String from = "sender@email.com";
+        String to = "receiver@email.com";
+        String subject = "test email";
+        String message = "email message";
+
+        String from2 = "someOtherSender@mail.com";
+
+        CompanyEmail ce = new CompanyEmail(from, to, subject, message);
+        CompanyEmail ce2 = new CompanyEmail(from2, to, subject, message);
+        cp.addEmail(ce);
+        cp.addEmail(ce2);
+
+        ArrayList<String> contacts = new ArrayList<>();
+        contacts.add(from);
+        contacts.add(from2);
+        assertEquals(contacts, cp.getProjectContacts());
+
+        assertEquals(from, cp.getProjectContacts().get(0));
+        assertEquals(from2, cp.getProjectContacts().get(1));
     }
 
+//    Test by Raigo Jerva
     @org.junit.Test
     public void toString_test() {
-        fail("No test supplied");
-
+        CompanyProject cp = new CompanyProject();
+        String template = "New Project [Feasibility]";
+        assertEquals(template, cp.toString());
     }
 }
