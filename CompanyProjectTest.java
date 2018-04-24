@@ -66,7 +66,7 @@ public class CompanyProjectTest {
 
 //    Test by Raigo Jerva
     @org.junit.Test
-    public void getEmailsForPhase() {
+    public void getEmailsForPhase_currentPhase() {
         CompanyProject cp = new CompanyProject();
         String from = "sender@email.com";
         String to = "receiver@email.com";
@@ -75,7 +75,7 @@ public class CompanyProjectTest {
 
         CompanyEmail ce = new CompanyEmail(from, to, subject, message);
         cp.addEmail(ce);
-        ArrayList<CompanyEmail> emails = cp.getEmailsForPhase(0);
+        ArrayList<CompanyEmail> emails = cp.getEmailsForPhase();
         CompanyEmail email = emails.get(0);
         assertEquals(from, email.fromAddress());
         assertEquals(to, email.toAddress());
@@ -83,9 +83,27 @@ public class CompanyProjectTest {
         assertEquals(message, email.emailMessage());
     }
 
+//    Test by Raigo Jerva
     @org.junit.Test
-    public void getEmailsForPhase_certain() {
-        fail("No test supplied");
+    public void getEmailsForPhase_certainPhase() {
+        CompanyProject cp = new CompanyProject();
+//        advance phase twice to implementation phase
+        cp.nextPhase();
+        cp.nextPhase();
+
+        String from = "sender@email.com";
+        String to = "receiver@email.com";
+        String subject = "test email";
+        String message = "email message";
+        CompanyEmail ce = new CompanyEmail(from, to, subject, message);
+        cp.addEmail(ce);
+
+        ArrayList<CompanyEmail> emails = cp.getEmailsForPhase(3);
+        CompanyEmail email = emails.get(0);
+        assertEquals(from, email.fromAddress());
+        assertEquals(to, email.toAddress());
+        assertEquals(subject, email.subjectLine());
+        assertEquals(message, email.emailMessage());
     }
 
     @org.junit.Test
@@ -111,5 +129,6 @@ public class CompanyProjectTest {
     @org.junit.Test
     public void toString_test() {
         fail("No test supplied");
+
     }
 }

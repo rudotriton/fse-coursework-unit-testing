@@ -5,7 +5,6 @@ public class CompanyProject {
     private String PTitle;
     private ArrayList<String> ProjectContacts;
     private int ProjectPhase;
-//project can only have 6 emails for a phase
     private ArrayList[] ProjectEmails = new ArrayList[6];
 
     public CompanyProject() {
@@ -69,8 +68,9 @@ public class CompanyProject {
         return ProjectEmails[ProjectPhase];
     }
 
+//    Since phase 1 is at index 0, then the parameter is reduced by 1
     public ArrayList<CompanyEmail> getEmailsForPhase(int thePhase) {
-        return ProjectEmails[thePhase];
+        return ProjectEmails[thePhase - 1];
     }
 
     public boolean nextPhase() {
@@ -78,6 +78,8 @@ public class CompanyProject {
         if (ProjectPhase > CompanyEmailSystem.ProjectPhases.length) {
             return false;
         } else {
+//            create an arrayList for emails for the phase - Raigo
+            ProjectEmails[ProjectPhase] = new ArrayList<CompanyEmail>();
             return true;
         }
     }
