@@ -138,7 +138,7 @@ public class CompanyProjectTest {
         CompanyEmail ce = new CompanyEmail(from, to, subject, message);
         cp.addEmail(ce);
 
-        ArrayList<CompanyEmail> emails = cp.getEmailsForPhase(3);
+        ArrayList<CompanyEmail> emails = cp.getEmailsForPhase(2);
         CompanyEmail email = emails.get(0);
         assertEquals(from, email.fromAddress());
         assertEquals(to, email.toAddress());

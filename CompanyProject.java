@@ -65,8 +65,7 @@ public class CompanyProject {
     }
 
     public ArrayList<CompanyEmail> getEmailsForPhase(int thePhase) {
-//        return ProjectEmails[thePhase];
-        return ProjectEmails[thePhase-1];
+        return ProjectEmails[thePhase];
     }
 
     public boolean nextPhase() {

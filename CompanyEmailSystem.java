@@ -14,7 +14,7 @@ public class CompanyEmailSystem {
         //Startup
         //////
         GlobalProjectCounter = 0;
-        AllProjects = new ArrayList<CompanyProject>();
+        AllProjects = new ArrayList<>();
 
         //////////////
         //example test data
@@ -60,7 +60,11 @@ public class CompanyEmailSystem {
                         System.out.println("Goodbye!");
                         break;
                     } else if (Integer.parseInt(s) != -1 ) {
-                        currentProjShowing = Integer.parseInt(s)-1;
+                        if (Integer.parseInt(s) <= GlobalProjectCounter) {
+                            currentProjShowing = Integer.parseInt(s);
+                        } else {
+                            System.out.println("There is no project with that ID.");
+                        }
                     } else {
                         System.out.println("Command not recognised");
                     }
@@ -113,17 +117,21 @@ public class CompanyEmailSystem {
     }
 
     private static void ListEmails(int phaseToShow) {
-        CompanyProject cp = AllProjects.get(currentProjShowing);
+        CompanyProject cp = AllProjects.get(currentProjShowing - 1);
         ArrayList<CompanyEmail> projectPhaseEmails = null;
         if (phaseToShow==0) {
             projectPhaseEmails = cp.getEmailsForPhase();
-        } else if (phaseToShow < cp.getPhaseByID()) {
-            projectPhaseEmails = cp.getEmailsForPhase(phaseToShow);
+        } else if ((phaseToShow - 1) <= cp.getPhaseByID()) {
+            projectPhaseEmails = cp.getEmailsForPhase(phaseToShow-1);
         } else {
             System.out.println("Error: Unknown Phase");
         }
         if (projectPhaseEmails != null) {
-            System.out.println(cp.toString());
+            if (phaseToShow == 0) {
+                System.out.println(cp.toString());
+            } else {
+                System.out.println("[" + ProjectPhases[phaseToShow-1] + "]");
+            }
             System.out.println("\n   From                Subject");
             System.out.println("--------------------------------");
             for (int x = 0; x < projectPhaseEmails.size(); x++) {
@@ -138,14 +146,15 @@ public class CompanyEmailSystem {
     }
 
     private static void ListPhases() {
-        CompanyProject cp = AllProjects.get(currentProjShowing);
-        for (int x=0; x < cp.getPhaseByID(); x++ ) {
-            System.out.println((x+1)+") "+cp.getPhaseByName()+" - "+cp.getEmailsForPhase(x).size()+" Emails");
+        CompanyProject cp = AllProjects.get(currentProjShowing - 1);
+        for (int x=0; x <= cp.getPhaseByID(); x++ ) {
+            System.out.println((x+1)+") "+ ProjectPhases[x] +" - "+cp
+                    .getEmailsForPhase(x).size()+" Emails");
         }
     }
 
     private static void ListContacts() {
-        CompanyProject cp = AllProjects.get(currentProjShowing);
+        CompanyProject cp = AllProjects.get(currentProjShowing - 1);
         ArrayList<String> projectContacts = cp.getProjectContacts();
         for (int x=0; x < projectContacts.size(); x++ ) {
             System.out.println((x+1)+") "+projectContacts.get(x));
@@ -162,14 +171,14 @@ public class CompanyEmailSystem {
         String subjectLine = in.nextLine();
         System.out.println("What is the Message?");
         String emailBody = in.nextLine();
-        CompanyProject cp = AllProjects.get(currentProjShowing);
+        CompanyProject cp = AllProjects.get(currentProjShowing - 1);
         CompanyEmail ce = new CompanyEmail(fromAddress,toAddress,subjectLine,emailBody);
         cp.addEmail(ce);
         System.out.println("[Email added to " + cp.toString() + "]");
     }
 
     private static void ChangeProjectPhase() {
-        CompanyProject cp = AllProjects.get(currentProjShowing);
+        CompanyProject cp = AllProjects.get(currentProjShowing - 1);
         if (cp.nextPhase()) {
             System.out.println("[Phase changed: " + cp.toString());
         } else {
