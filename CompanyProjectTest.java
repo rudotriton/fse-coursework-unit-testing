@@ -1,23 +1,36 @@
-import org.junit.Assert;
-
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
 public class CompanyProjectTest {
 
+    private CompanyProject cp;
+
+//    Test by Raigo Jerva
+    @org.junit.Before
+    public void setup() {
+        CompanyEmailSystem.GlobalProjectCounter = 0;
+        cp = new CompanyProject();
+    }
+
+    @org.junit.Test
+    public void constructor_test() {
+        CompanyProject project1 = new CompanyProject(null);
+//        CompanyProject project2 = new CompanyProject("1");
+        assertNull(project1.getPTitle());
+    }
+
+
 //    Test by Raigo Jerva
     @org.junit.Test
     public void getPID() {
-        CompanyEmailSystem.GlobalProjectCounter = 0;
-        CompanyProject cp = new CompanyProject();
         assertEquals(1, cp.getPID());
     }
 
 //    Test by Raigo Jerva
     @org.junit.Test
     public void getPTitle() {
-        CompanyProject cp = new CompanyProject();
         String title = cp.getPTitle();
         assertEquals("New Project", title);
     }
@@ -26,8 +39,15 @@ public class CompanyProjectTest {
 //    set title that is at least 10 characters long
     @org.junit.Test
     public void setPTitle() {
-        CompanyProject cp = new CompanyProject();
         cp.setPTitle("Project One");
+        String title = cp.getPTitle();
+        assertEquals("Project One", title);
+    }
+
+//    Test by Raigo Jerva
+    @org.junit.Test(expected = NullPointerException.class)
+    public void setPTitle_null() {
+        cp.setPTitle(null);
         String title = cp.getPTitle();
         assertEquals("Project One", title);
     }
@@ -35,8 +55,7 @@ public class CompanyProjectTest {
 //    Test by Raigo Jerva
 //    set title that is too short
     @org.junit.Test
-    public void setPTitle_invalid() {
-        CompanyProject cp = new CompanyProject();
+    public void setPTitle_tooShort() {
         cp.setPTitle("Project 1");
         String title = cp.getPTitle();
         assertEquals("New Project", title);
@@ -45,7 +64,6 @@ public class CompanyProjectTest {
 //    Test by Raigo Jerva
     @org.junit.Test
     public void isContact() {
-        CompanyProject cp = new CompanyProject();
         String email = "example@mail.com";
         cp.addContact(email);
         assertTrue(cp.isContact(email));
@@ -54,15 +72,15 @@ public class CompanyProjectTest {
 //    Test by Raigo Jerva
     @org.junit.Test
     public void addContact() {
-        CompanyProject cp = new CompanyProject();
-        String email = "email";
+        String email = "example@mail.com";
         cp.addContact(email);
+        ArrayList<String> contacts = cp.getProjectContacts();
+        assertEquals(email, contacts.get(0));
     }
 
 //    Test by Raigo Jerva
     @org.junit.Test
     public void addEmail() {
-        CompanyProject cp = new CompanyProject();
         String from = "sender@email.com";
         String to = "receiver@email.com";
         String subject = "test email";
@@ -77,7 +95,6 @@ public class CompanyProjectTest {
 //    Test by Raigo Jerva
     @org.junit.Test
     public void addEmail_invalidEmail() {
-        CompanyProject cp = new CompanyProject();
         String from = "sender@email.com";
         String to = "receiver@email.com";
 
@@ -92,7 +109,6 @@ public class CompanyProjectTest {
 //    Test by Raigo Jerva
     @org.junit.Test
     public void getEmailsForPhase_currentPhase() {
-        CompanyProject cp = new CompanyProject();
         String from = "sender@email.com";
         String to = "receiver@email.com";
         String subject = "test email";
@@ -111,7 +127,6 @@ public class CompanyProjectTest {
 //    Test by Raigo Jerva
     @org.junit.Test
     public void getEmailsForPhase_certainPhase() {
-        CompanyProject cp = new CompanyProject();
 //        advance phase twice to Implementation phase
         cp.nextPhase();
         cp.nextPhase();
@@ -134,7 +149,6 @@ public class CompanyProjectTest {
 //    Test by Raigo Jerva
     @org.junit.Test
     public void nextPhase() {
-        CompanyProject cp = new CompanyProject();
         cp.nextPhase();
         assertEquals("Design", cp.getPhaseByName());
     }
@@ -142,21 +156,18 @@ public class CompanyProjectTest {
 //    Test by Raigo Jerva
     @org.junit.Test
     public void getPhaseByName() {
-        CompanyProject cp = new CompanyProject();
         assertEquals("Feasibility", cp.getPhaseByName());
     }
 
 //    Test by Raigo Jerva
     @org.junit.Test
     public void getPhaseByID() {
-        CompanyProject cp = new CompanyProject();
         assertEquals(1, cp.getPhaseByID());
     }
 
 //    Test by Raigo Jerva
     @org.junit.Test
     public void getProjectContacts() {
-        CompanyProject cp = new CompanyProject();
         String from = "sender@email.com";
         String to = "receiver@email.com";
         String subject = "test email";
@@ -181,7 +192,6 @@ public class CompanyProjectTest {
 //    Test by Raigo Jerva
     @org.junit.Test
     public void toString_test() {
-        CompanyProject cp = new CompanyProject();
         String template = "New Project [Feasibility]";
         assertEquals(template, cp.toString());
     }
