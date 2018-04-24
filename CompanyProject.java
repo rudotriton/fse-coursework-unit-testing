@@ -12,7 +12,8 @@ public class CompanyProject {
         PID = CompanyEmailSystem.GlobalProjectCounter;
         PTitle = "New Project";
         ProjectContacts = new ArrayList<>();
-        ProjectPhase = 1;
+//        ProjectPhase = 1;
+        ProjectPhase = 0;
         ProjectEmails[ProjectPhase] = new ArrayList<CompanyEmail>();
     }
 
@@ -21,7 +22,8 @@ public class CompanyProject {
         PID = CompanyEmailSystem.GlobalProjectCounter;
         PTitle = pTitle;
         ProjectContacts = new ArrayList<>();
-        ProjectPhase = 1;
+//        ProjectPhase = 1;
+        ProjectPhase = 0;
         ProjectEmails[ProjectPhase] = new ArrayList<CompanyEmail>();
     }
 
@@ -63,14 +65,15 @@ public class CompanyProject {
     }
 
     public ArrayList<CompanyEmail> getEmailsForPhase(int thePhase) {
-        return ProjectEmails[thePhase];
+//        return ProjectEmails[thePhase];
+        return ProjectEmails[thePhase-1];
     }
 
     public boolean nextPhase() {
-        ProjectPhase++;
-        if (ProjectPhase > CompanyEmailSystem.ProjectPhases.length) {
+        if (ProjectPhase >= CompanyEmailSystem.ProjectPhases.length - 1) {
             return false;
         } else {
+            ProjectPhase++;
 //            create an arrayList for emails for the phase - Raigo
             ProjectEmails[ProjectPhase] = new ArrayList<CompanyEmail>();
             return true;
@@ -78,8 +81,7 @@ public class CompanyProject {
     }
 
     public String getPhaseByName() {
-//        ProjectPhases array starts at index 0 with the first phase - Raigo
-        return CompanyEmailSystem.ProjectPhases[ProjectPhase - 1];
+        return CompanyEmailSystem.ProjectPhases[ProjectPhase];
     }
 
     public int getPhaseByID() {

@@ -155,6 +155,18 @@ public class CompanyProjectTest {
 
 //    Test by Raigo Jerva
     @org.junit.Test
+    public void nextPhase_limit() {
+        cp.nextPhase(); // phase 2
+        cp.nextPhase(); // phase 3
+        cp.nextPhase(); // phase 4
+        cp.nextPhase(); // phase 5
+        cp.nextPhase(); // phase 6
+        cp.nextPhase(); // still phase 6
+        assertEquals("Completed", cp.getPhaseByName());
+    }
+
+//    Test by Raigo Jerva
+    @org.junit.Test
     public void getPhaseByName() {
         assertEquals("Feasibility", cp.getPhaseByName());
     }
@@ -162,7 +174,7 @@ public class CompanyProjectTest {
 //    Test by Raigo Jerva
     @org.junit.Test
     public void getPhaseByID() {
-        assertEquals(1, cp.getPhaseByID());
+        assertEquals(0, cp.getPhaseByID());
     }
 
 //    Test by Raigo Jerva
