@@ -60,7 +60,8 @@ public class CompanyEmailSystem {
                         System.out.println("Goodbye!");
                         break;
                     } else if (Integer.parseInt(s) != -1 ) {
-                        if (Integer.parseInt(s) <= GlobalProjectCounter) {
+                        if (Integer.parseInt(s) <= GlobalProjectCounter && Integer
+                                .parseInt(s) > 0) {
                             currentProjShowing = Integer.parseInt(s);
                         } else {
                             System.out.println("There is no project with that ID.");
