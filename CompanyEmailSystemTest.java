@@ -48,7 +48,7 @@ public class CompanyEmailSystemTest{
 				"1) Proj1 [Feasibility] - 4emails" +System.lineSeparator() + 
 				"2) Proj2 [Feasibility] - 3emails" +System.lineSeparator() + 
 				"3) Proj3 [Feasibility] - 3emails" +System.lineSeparator() + 
-				"What do you want to do?" +System.lineSeparator() + 
+				"What do you want to do?\n" +
 				" P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it Software" 
 				+System.lineSeparator(),outContent.toString());
 		 }
