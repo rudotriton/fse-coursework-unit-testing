@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -14,10 +13,10 @@ public class CompanyProjectTest {
         cp = new CompanyProject();
     }
 
+//    Test by Raigo Jerva
     @org.junit.Test
     public void constructor_test() {
         CompanyProject project1 = new CompanyProject(null);
-//        CompanyProject project2 = new CompanyProject("1");
         assertNull(project1.getPTitle());
     }
 
@@ -48,8 +47,7 @@ public class CompanyProjectTest {
     @org.junit.Test(expected = NullPointerException.class)
     public void setPTitle_null() {
         cp.setPTitle(null);
-        String title = cp.getPTitle();
-        assertEquals("Project One", title);
+        fail("Should have thrown NullPointerException.");
     }
 
 //    Test by Raigo Jerva
@@ -207,4 +205,6 @@ public class CompanyProjectTest {
         String template = "New Project [Feasibility]";
         assertEquals(template, cp.toString());
     }
+
+
 }
