@@ -45,7 +45,7 @@ public class CompanyEmail {
 
     //1.7
     public void setFrom(String fromAddr) {
-        if (fromAddr.contains("@")) {
+        if (fromAddr.contains("@")) {  // unsatisfactory email check
             fromAddress = fromAddr;
         }
     }
@@ -80,7 +80,7 @@ public class CompanyEmail {
     //1.12
     public String toString() {
         if (subjectLine.equals("")) {
-            return "[no subject]";
+            return "[no subject]";				//doesnt make the actual subjectLine [no subject]
         } else {
             return subjectLine;
         }
