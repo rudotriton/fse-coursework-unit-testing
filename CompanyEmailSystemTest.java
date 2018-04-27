@@ -43,13 +43,12 @@ public class CompanyEmailSystemTest{
 		 InputStream in = new ByteArrayInputStream(input.getBytes());
 		 System.setIn(in);
 		 CompanyEmailSystem.main(new String[] {});
-
 		assertEquals("What do you want to do?\n" + 
-				" P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it1) Proj1 [Feasibility] - 4emails\n" + 
-				"1) Proj1 [Feasibility] - 4emails\n" + 
-				"2) Proj2 [Feasibility] - 3emails\n" + 
-				"3) Proj3 [Feasibility] - 3emails\n" + 
-				"What do you want to do?\n" + 
+				" P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it" +System.lineSeparator() + 
+				"1) Proj1 [Feasibility] - 4emails" +System.lineSeparator() + 
+				"2) Proj2 [Feasibility] - 3emails" +System.lineSeparator() + 
+				"3) Proj3 [Feasibility] - 3emails" +System.lineSeparator() + 
+				"What do you want to do?" +System.lineSeparator() + 
 				" P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it Software" 
 				+System.lineSeparator(),outContent.toString());
 		 }
