@@ -134,6 +134,26 @@ public class CompanyEmailSystemTest {
                 "E[x]it Software" + System.lineSeparator(),outContent.toString());
 		 }
 	
+	@org.junit.Test
+	public void testMain_addEmailWithBlankFields() {
+		 String input = "1" + "\nA\n" + "\n" + "\n" + "\n" + "\n";
+		 InputStream in = new ByteArrayInputStream(input.getBytes());
+		 System.setIn(in);
+		 CompanyEmailSystem.main(new String[] {});
+
+		assertEquals("What do you want to do?\n" + 
+				" P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it" + System.lineSeparator() +
+				"What do you want to do?\n" +
+                " L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project" + System.lineSeparator() +
+				"Which email address is it from?" + System.lineSeparator() +
+				"Which email address is it to?" + System.lineSeparator() +
+				"What is the Subject?" + System.lineSeparator() +
+				"What is the Message?" + System.lineSeparator() +
+				"[Email added to Proj1 [Feasibility]]" + System.lineSeparator() +
+				"What do you want to do?\n" + 
+				" P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it" + System.lineSeparator(),outContent.toString());
+		 }
+	
 //test by Vasilis Ieropoulos
     @org.junit.Test
     public void testmain2_addNewEmail() {
