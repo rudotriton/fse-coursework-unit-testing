@@ -74,7 +74,7 @@ public class CompanyEmailSystemTest {
 
     @org.junit.Test
 	public void testMain_addNamelessProject() {
-		 String input = "A" + "\n";
+		 String input = "A" + "\n\n";
 		 InputStream in = new ByteArrayInputStream(input.getBytes());
 		 System.setIn(in);
 		 CompanyEmailSystem.main(new String[] {});
@@ -83,7 +83,7 @@ public class CompanyEmailSystemTest {
 				+ "What is the title of the project?" + System.lineSeparator() +
 				"[Project added]" + System.lineSeparator() +
 				"What do you want to do?\n" + 
-				" List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = " +
+				" P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = " +
                 "E[x]it Software" + System.lineSeparator(),outContent.toString());
 		 }
 
