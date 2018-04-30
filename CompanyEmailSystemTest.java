@@ -85,6 +85,21 @@ public class CompanyEmailSystemTest {
 				"What do you want to do?\n" + 
 				" P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = " +
                 "E[x]it Software" + System.lineSeparator(),outContent.toString());
+	}
+	
+    @org.junit.Test
+	public void testMain_addValidProject() {
+		 String input = "A" + "\nProj4\n";
+		 InputStream in = new ByteArrayInputStream(input.getBytes());
+		 System.setIn(in);
+		 CompanyEmailSystem.main(new String[] {});
+         assertEquals("What do you want to do?\n" + 
+				" P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it" + System.lineSeparator()
+				+ "What is the title of the project?" + System.lineSeparator() +
+				"[Project added]" + System.lineSeparator() +
+				"What do you want to do?\n" + 
+				" P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = " +
+                "E[x]it Software" + System.lineSeparator(),outContent.toString());
 		 }
 
     @org.junit.After
