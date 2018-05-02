@@ -5,7 +5,13 @@ public class CompanyEmail {
     private String emailMessage;
     
     public static final String EMAIL_VERIFICATION = "^([\\w-\\.]+){1,64}@([\\w&&[^_]]+){2,255}.[a-z]{2,}$";
-	// REGEX added for checking email addresses for validity
+	
+    // IMPROVEMENT -> REGEX added for checking email addresses for validity
+    // By Alex Melissas and Sam Kendrick
+    
+    // CLARITY -> Added numbering above each function according to the ID's 
+    // we had for them on our test and bugfixing report from the previous lab assignment.
+    // By Alex Melissas & Sam Kendrick
     
     //1.1
     public CompanyEmail() {
@@ -22,13 +28,8 @@ public class CompanyEmail {
         subjectLine = subLine;
         emailMessage = eMessage;*/
     	
-    	// Addresses are not checked for validation (only getter functions called by constructor)
-    	// Spotted by Sam Kendrick and Alex Melissas
-    	
-//    	fromAddress = null;
-//        toAddress = null;
-//        subjectLine = null;
-//        emailMessage = null;
+    	// BUG -> Addresses are not checked for validation (only getter functions called by constructor)
+    	// Spotted and fixed by Sam Kendrick and Alex Melissas
     	
     	setFrom(fAddress);
     	setTo(tAddress);
@@ -62,7 +63,8 @@ public class CompanyEmail {
 
     //1.7
     public void setFrom(String fromAddr) {
-        //if (fromAddr.contains("@")) {        // UNSATISFACTORY EMAIL CHECKING -- SAM / ALEX
+        //if (fromAddr.contains("@")) {        			// IMPROVEMENT -> Unsatisfactory email checking - Use 
+    													// REGEX instead. By Sam Kendrick & Alex Melissas
     	if (fromAddr.matches(EMAIL_VERIFICATION)) {
             fromAddress = fromAddr;
         }
@@ -70,7 +72,8 @@ public class CompanyEmail {
 
     //1.8
     public void setTo(String toAddr) {
-        //if (toAddr.contains("@")) { 
+        //if (toAddr.contains("@")) { 					// IMPROVEMENT -> Unsatisfactory email checking - Use 
+														// REGEX instead. By Sam Kendrick & Alex Melissas
     	if (toAddr.matches(EMAIL_VERIFICATION)) {
             toAddress = toAddr;
     	}
@@ -89,21 +92,17 @@ public class CompanyEmail {
     //1.11
     public boolean isValid() {
         boolean isComplete = true;
-//        if (fromAddress == null) isComplete = false;
-//        if (toAddress == null) isComplete = false;
-//        if (subjectLine == null) isComplete = false;
-//        if (emailMessage == null) isComplete = false;
-        	//        BUG -> not ANDing - if last thing true it's wrong.
-        	//		Spotted by Sam Kendrick & Alex Melissas
-        if( (fromAddress == null) || (toAddress == null) || (subjectLine == null) || (emailMessage == null))
-        		isComplete=false;
+        if (fromAddress == null) isComplete = false;
+        if (toAddress == null) isComplete = false;
+        if (subjectLine == null) isComplete = false;
+        if (emailMessage == null) isComplete = false;
         return isComplete;
     }
 
     //1.12
     public String toString() {
-        if (subjectLine.equals("")) {
-            return "[no subject]";				//doesnt make the actual subjectLine [no subject]
+        if (subjectLine=="") { // .equals not working?
+	            return "[no subject]";				
         } else {
             return subjectLine;
         }
