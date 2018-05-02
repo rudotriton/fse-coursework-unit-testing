@@ -60,8 +60,11 @@ public class CompanyEmailSystem {
                         System.out.println("Goodbye!");
                         break;
                     } else if (Integer.parseInt(s) != -1) {
+//                        only access valid projects
                         if (Integer.parseInt(s) <= GlobalProjectCounter && Integer
                                 .parseInt(s) > 0) {
+//                            first project couldn't be accessed - Raigo
+//                            currentProjShowing = Integer.parseInt(s)-1;
                             currentProjShowing = Integer.parseInt(s);
                         } else {
                             System.out.println("There is no project with this ID.");
@@ -127,6 +130,7 @@ public class CompanyEmailSystem {
         if (phaseToShow == 0) {
             projectPhaseEmails = cp.getEmailsForPhase();
         } else if ((phaseToShow - 1) <= cp.getPhaseByID()) {
+//            phase to show - 1 indexing fix
             projectPhaseEmails = cp.getEmailsForPhase(phaseToShow - 1);
         } else {
             System.out.println("Error: Unknown Phase");
@@ -135,6 +139,7 @@ public class CompanyEmailSystem {
             if (phaseToShow == 0) {
                 System.out.println(cp.toString());
             } else {
+//                phase to show - 1 indexing fix
                 System.out.println("[" + ProjectPhases[phaseToShow - 1] + "]");
             }
             System.out.println("\n   From                Subject");
@@ -151,6 +156,8 @@ public class CompanyEmailSystem {
     }
 
     private static void ListPhases() {
+//        indexing fix
+//        CompanyProject cp = AllProjects.get(currentProjShowing);
         CompanyProject cp = AllProjects.get(currentProjShowing - 1);
         for (int x = 0; x <= cp.getPhaseByID(); x++) {
             System.out.println((x + 1) + ") " + ProjectPhases[x] + " - " + cp
@@ -159,6 +166,8 @@ public class CompanyEmailSystem {
     }
 
     private static void ListContacts() {
+//        indexing fix
+//        CompanyProject cp = AllProjects.get(currentProjShowing);
         CompanyProject cp = AllProjects.get(currentProjShowing - 1);
         ArrayList<String> projectContacts = cp.getProjectContacts();
         for (int x = 0; x < projectContacts.size(); x++) {
@@ -176,6 +185,8 @@ public class CompanyEmailSystem {
         String subjectLine = in.nextLine();
         System.out.println("What is the Message?");
         String emailBody = in.nextLine();
+//        indexing fix
+//        CompanyProject cp = AllProjects.get(currentProjShowing);
         CompanyProject cp = AllProjects.get(currentProjShowing - 1);
         CompanyEmail ce = new CompanyEmail(fromAddress, toAddress, subjectLine, emailBody);
         cp.addEmail(ce);
@@ -183,6 +194,8 @@ public class CompanyEmailSystem {
     }
 
     private static void ChangeProjectPhase() {
+//        indexing fix
+//        CompanyProject cp = AllProjects.get(currentProjShowing);
         CompanyProject cp = AllProjects.get(currentProjShowing - 1);
         if (cp.nextPhase()) {
             System.out.println("[Phase changed: " + cp.toString());
