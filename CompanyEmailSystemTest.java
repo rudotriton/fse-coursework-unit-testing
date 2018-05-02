@@ -17,6 +17,22 @@ public class CompanyEmailSystemTest {
 
     //    Test by Raigo Jerva
     @org.junit.Test
+    public void testMain_invalidCommand() {
+        String input = "J" + "\nX";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        CompanyEmailSystem.main(new String[]{});
+        assertEquals("What do you want to do?\n P = List [P]rojects, [num] = Open " +
+                "Project [num], A = [A]dd Project, X = E[x]it" + System.lineSeparator() +
+                "Command not recognised" + System.lineSeparator() +
+                "What do you want to do?\n P = List [P]rojects, [num] = Open " +
+                "Project [num], A = [A]dd Project, X = E[x]it Software" + System
+                .lineSeparator() +
+                "Goodbye!" + System.lineSeparator(), outContent.toString());
+    }
+
+    //    Test by Raigo Jerva
+    @org.junit.Test
     public void testMainExit() {
         String input = "X";
         InputStream in = new ByteArrayInputStream(input.getBytes());
@@ -43,6 +59,22 @@ public class CompanyEmailSystemTest {
                 " P = List [P]rojects, [num] = Open Project [num], A = [A]dd " +
                 "Project, X = E[x]it Software" + System.lineSeparator() + "Goodbye!" + System
                 .lineSeparator(), outContent.toString());
+    }
+
+    //    Test by Raigo Jerva
+    @org.junit.Test
+    public void testMain_invalidProjectSelect() {
+        String input = "5" + "\nX";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        CompanyEmailSystem.main(new String[]{});
+        assertEquals("What do you want to do?\n P = List [P]rojects, [num] = Open " +
+                "Project [num], A = [A]dd Project, X = E[x]it" + System.lineSeparator() +
+                "There is no project with this ID." + System.lineSeparator() +
+                "What do you want to do?\n P = List [P]rojects, [num] = Open " +
+                "Project [num], A = [A]dd Project, X = E[x]it Software" + System
+                .lineSeparator() +
+                "Goodbye!" + System.lineSeparator(), outContent.toString());
     }
 
     //    Test by Raigo Jerva
@@ -82,16 +114,6 @@ public class CompanyEmailSystemTest {
         assertEquals("What do you want to do?\n" +
                 " P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X" +
                 " = E[x]it" + System.lineSeparator() +
-//                Test suite bug
-
-//                "[Feasibility]" + System.lineSeparator() +
-//                "\n   From                Subject" + System.lineSeparator() +
-//                "--------------------------------" + System.lineSeparator() +
-//                "1) me9@me.com - this is a test subject for email9" + System.lineSeparator() +
-//                "2) me6@me.com - this is a test subject for email6" + System
-//                .lineSeparator() +
-//                "3) me3@me.com - this is a test subject for email3" + System.lineSeparator() +
-//                "4) me0@me.com - this is a test subject for email0" + System.lineSeparator() +
                 "What do you want to do?\n" +
                 " L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project" + System.lineSeparator() +
                 "Proj1 [Feasibility]" + System.lineSeparator() +
@@ -112,10 +134,89 @@ public class CompanyEmailSystemTest {
                 .toString());
     }
 
+    //    Test by Raigo Jerva
+    @org.junit.Test
+    public void testmain_ListPhasefolder() {
+        String input = "1" + "\nF" + "\nX" + "\nX";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        CompanyEmailSystem.main(new String[]{});
+        assertEquals("What do you want to do?\n" +
+                " P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X" +
+                " = E[x]it" + System.lineSeparator() +
+                "What do you want to do?\n" +
+                " L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project" + System.lineSeparator() +
+                "1) Feasibility - 4 Emails" + System.lineSeparator() +
+                "What do you want to do?\n" +
+                " L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = " +
+                "Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List " +
+                "[C]ontacts, X =  E[x]it Project" + System.lineSeparator() + "What do " +
+                "you want to do?\n" + " P =" +
+                " List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = " +
+                "E[x]it Software" + System.lineSeparator() + "Goodbye!" + System.lineSeparator(), outContent
+                .toString());
+    }
+
+    //    Test by Raigo Jerva
+    @org.junit.Test
+    public void testmain_ListContacts() {
+        String input = "1" + "\nC" + "\nX" + "\nX";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        CompanyEmailSystem.main(new String[]{});
+        assertEquals("What do you want to do?\n" +
+                " P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X" +
+                " = E[x]it" + System.lineSeparator() +
+                "What do you want to do?\n" +
+                " L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project" + System.lineSeparator() +
+                "1) me0@me.com" + System.lineSeparator() +
+                "2) me3@me.com" + System.lineSeparator() +
+                "3) me6@me.com" + System.lineSeparator() +
+                "4) me9@me.com" + System.lineSeparator() +
+                "What do you want to do?\n" +
+                " L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = " +
+                "Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List " +
+                "[C]ontacts, X =  E[x]it Project" + System.lineSeparator() + "What do " +
+                "you want to do?\n" + " P =" +
+                " List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = " +
+                "E[x]it Software" + System.lineSeparator() + "Goodbye!" + System.lineSeparator(), outContent
+                .toString());
+    }
+
+    //    Test by Raigo Jerva
+    @org.junit.Test
+    public void testmain_ListEmailsForCertainPhase() {
+        String input = "1" + "\n1" + "\nX" + "\nX";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        CompanyEmailSystem.main(new String[]{});
+        assertEquals("What do you want to do?\n" +
+                " P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X" +
+                " = E[x]it" + System.lineSeparator() +
+                "What do you want to do?\n" +
+                " L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project" + System.lineSeparator() +
+                "[Feasibility]" + System.lineSeparator() +
+                "\n   From                Subject" + System.lineSeparator() +
+                "--------------------------------" + System.lineSeparator() +
+                "1) me9@me.com - this is a test subject for email9" + System.lineSeparator() +
+                "2) me6@me.com - this is a test subject for email6" + System
+                .lineSeparator() +
+                "3) me3@me.com - this is a test subject for email3" + System.lineSeparator() +
+                "4) me0@me.com - this is a test subject for email0" + System.lineSeparator() +
+                "What do you want to do?\n" +
+                " L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = " +
+                "Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List " +
+                "[C]ontacts, X =  E[x]it Project" + System.lineSeparator() + "What do " +
+                "you want to do?\n" + " P =" +
+                " List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = " +
+                "E[x]it Software" + System.lineSeparator() + "Goodbye!" + System.lineSeparator(), outContent
+                .toString());
+    }
+
     //  Test by Harirak Srikureja
     @org.junit.Test
     public void testMainProjects() {
-        String input = "P";
+        String input = "P" + "\nX";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         CompanyEmailSystem.main(new String[]{});
@@ -126,13 +227,13 @@ public class CompanyEmailSystemTest {
                 "3) Proj3 [Feasibility] - 3emails" + System.lineSeparator() +
                 "What do you want to do?\n" +
                 " P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it Software"
-                + System.lineSeparator(), outContent.toString());
+                + System.lineSeparator() + "Goodbye!" + System.lineSeparator(), outContent.toString());
     }
 
     //    Test by Harirak Srikureja
     @org.junit.Test
     public void testMain_addNamelessProject() {
-        String input = "A" + "\n\n";
+        String input = "A" + "\n\n" + "\nX";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         CompanyEmailSystem.main(new String[]{});
@@ -142,13 +243,13 @@ public class CompanyEmailSystemTest {
                 "[Project added]" + System.lineSeparator() +
                 "What do you want to do?\n" +
                 " P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = " +
-                "E[x]it Software" + System.lineSeparator(), outContent.toString());
+                "E[x]it Software" + System.lineSeparator() + "Goodbye!" + System.lineSeparator(), outContent.toString());
     }
 
     //    Test by Harirak Srikureja
     @org.junit.Test
     public void testMain_addValidProject() {
-        String input = "A" + "\nProj4\n";
+        String input = "A" + "\nProj4\n" + "\nX";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         CompanyEmailSystem.main(new String[]{});
@@ -158,13 +259,13 @@ public class CompanyEmailSystemTest {
                 "[Project added]" + System.lineSeparator() +
                 "What do you want to do?\n" +
                 " P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = " +
-                "E[x]it Software" + System.lineSeparator(), outContent.toString());
+                "E[x]it Software" + System.lineSeparator() + "Goodbye!" + System.lineSeparator(), outContent.toString());
     }
 
     //    Test by Harirak Srikureja
     @org.junit.Test
     public void testMain_addEmailWithBlankFields() {
-        String input = "1" + "\nA\n" + "\n" + "\n" + "\n" + "\n";
+        String input = "1" + "\nA\n" + "\n" + "\n" + "\n" + "\n" + "\nX" + "\nX";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         CompanyEmailSystem.main(new String[]{});
@@ -182,7 +283,10 @@ public class CompanyEmailSystemTest {
                 " L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = " +
                 "Move" +
                 " to [N]ext Phase, [num] = List Emails in Phase [num], C = List " +
-                "[C]ontacts, X =  E[x]it Project" + System.lineSeparator(), outContent
+                "[C]ontacts, X =  E[x]it Project" + System.lineSeparator() +
+                "What do you want to do?\n" + " P =" +
+                " List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = " +
+                "E[x]it Software" + System.lineSeparator() + "Goodbye!" + System.lineSeparator(), outContent
                 .toString());
     }
 

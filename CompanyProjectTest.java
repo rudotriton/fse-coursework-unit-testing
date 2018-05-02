@@ -23,13 +23,13 @@ public class CompanyProjectTest {
 
 //    Test by Raigo Jerva
     @org.junit.Test
-    public void getPID() {
+    public void getPIDTest() {
         assertEquals(1, cp.getPID());
     }
 
 //    Test by Raigo Jerva
     @org.junit.Test
-    public void getPTitle() {
+    public void getPTitleTest() {
         String title = cp.getPTitle();
         assertEquals("New Project", title);
     }
@@ -37,7 +37,7 @@ public class CompanyProjectTest {
 //    Test by Raigo Jerva
 //    set title that is at least 10 characters long
     @org.junit.Test
-    public void setPTitle() {
+    public void setPTitleTest() {
         cp.setPTitle("Project One");
         String title = cp.getPTitle();
         assertEquals("Project One", title);
@@ -61,7 +61,7 @@ public class CompanyProjectTest {
 
 //    Test by Raigo Jerva
     @org.junit.Test
-    public void isContact() {
+    public void isContactTest() {
         String email = "example@mail.com";
         cp.addContact(email);
         assertTrue(cp.isContact(email));
@@ -69,7 +69,7 @@ public class CompanyProjectTest {
 
 //    Test by Raigo Jerva
     @org.junit.Test
-    public void addContact() {
+    public void addContactTest() {
         String email = "example@mail.com";
         cp.addContact(email);
         ArrayList<String> contacts = cp.getProjectContacts();
@@ -78,7 +78,7 @@ public class CompanyProjectTest {
 
 //    Test by Raigo Jerva
     @org.junit.Test
-    public void addEmail() {
+    public void addEmailTest() {
         String from = "sender@email.com";
         String to = "receiver@email.com";
         String subject = "test email";
@@ -146,7 +146,7 @@ public class CompanyProjectTest {
 
 //    Test by Raigo Jerva
     @org.junit.Test
-    public void nextPhase() {
+    public void nextPhaseTest() {
         cp.nextPhase();
         assertEquals("Design", cp.getPhaseByName());
     }
@@ -165,19 +165,19 @@ public class CompanyProjectTest {
 
 //    Test by Raigo Jerva
     @org.junit.Test
-    public void getPhaseByName() {
+    public void getPhaseByNameTest() {
         assertEquals("Feasibility", cp.getPhaseByName());
     }
 
 //    Test by Raigo Jerva
     @org.junit.Test
-    public void getPhaseByID() {
+    public void getPhaseByIDTest() {
         assertEquals(0, cp.getPhaseByID());
     }
 
 //    Test by Raigo Jerva
     @org.junit.Test
-    public void getProjectContacts() {
+    public void getProjectContactsTest() {
         String from = "sender@email.com";
         String to = "receiver@email.com";
         String subject = "test email";
