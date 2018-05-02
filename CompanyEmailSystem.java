@@ -20,9 +20,10 @@ public class CompanyEmailSystem {
         //example test data
         //////////////
 
-        CompanyProject cp1 = new CompanyProject("Proj1");
-        CompanyProject cp2 = new CompanyProject("Proj2");
-        CompanyProject cp3 = new CompanyProject("Proj3");
+        CompanyProject cp1 = new CompanyProject("TestProject1");
+        CompanyProject cp2 = new CompanyProject("TestProject2");
+        CompanyProject cp3 = new CompanyProject("TestProject3");
+        CompanyProject cp4 = new CompanyProject("TestProject4");
 
         for (int x = 0; x < 10; x++) {
             CompanyEmail ce = new CompanyEmail("me" + x + "@me.com", "you" + x + "@you.com", "this is a test subject for email" + x, "this is a test message for email " + x);
@@ -39,10 +40,16 @@ public class CompanyEmailSystem {
                     break;
             }
         }
+        for (int x = 0; x <= 20; x++) {
+            CompanyEmail ce = new CompanyEmail("me" + x + "@me.com", "you" + x + "@you.com", "this is a test subject for email" + x, "this is a test message for email " + x);
+            cp4.addEmail(ce);
+        }
+
 
         AllProjects.add(cp1);
         AllProjects.add(cp2);
         AllProjects.add(cp3);
+        AllProjects.add(cp4);
 
         /// END OF TEST DATA ///
 
@@ -70,8 +77,8 @@ public class CompanyEmailSystem {
                             System.out.println("There is no project with this ID.");
                         }
                     } //else {
-//                        is never reached, since any value tht is not P,A or X will be
-//                          parsed as an int and an exception is thrown - Raigo
+//                        this is never reached, since any value tht is not P,A or X
+//                          will be parsed as an int and an exception is thrown - Raigo
 //                        System.out.println("Command not recognised");
 //                    }
                 } else {
@@ -125,6 +132,7 @@ public class CompanyEmailSystem {
     }
 
     private static void ListEmails(int phaseToShow) {
+//        fix for indexing
         CompanyProject cp = AllProjects.get(currentProjShowing - 1);
         ArrayList<CompanyEmail> projectPhaseEmails = null;
         if (phaseToShow == 0) {

@@ -20,7 +20,9 @@ public class CompanyProject {
     public CompanyProject(String pTitle) {
         CompanyEmailSystem.GlobalProjectCounter++;
         PID = CompanyEmailSystem.GlobalProjectCounter;
-        PTitle = pTitle;
+//        pTitle is not forced to be more than 10 characters - Raigo
+//        PTitle = pTitle;
+        setPTitle(pTitle);
         ProjectContacts = new ArrayList<>();
 //        ProjectPhase = 1;
         ProjectPhase = 0;
@@ -38,6 +40,8 @@ public class CompanyProject {
     public void setPTitle(String pTitle) {
         if (pTitle.length() > 10 ) {
             PTitle = pTitle;
+        } else {
+            PTitle = "New Project";
         }
     }
 

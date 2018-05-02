@@ -16,8 +16,15 @@ public class CompanyProjectTest {
 //    Test by Raigo Jerva
     @org.junit.Test
     public void constructor_test() {
-        CompanyProject project1 = new CompanyProject(null);
-        assertNull(project1.getPTitle());
+        CompanyProject project1 = new CompanyProject("Some Project");
+        assertEquals("Some Project", project1.getPTitle());
+    }
+
+//    Test by Raigo Jerva
+    @org.junit.Test
+    public void constructor_test_invalidName() {
+        CompanyProject project1 = new CompanyProject("too short");
+        assertEquals("New Project", project1.getPTitle());
     }
 
 
@@ -78,13 +85,14 @@ public class CompanyProjectTest {
 
 //    Test by Raigo Jerva
     @org.junit.Test
-    public void addEmailTest() {
+    public void addEmail_toSecondPhase() {
         String from = "sender@email.com";
         String to = "receiver@email.com";
         String subject = "test email";
         String message = "email message";
 
         CompanyEmail ce = new CompanyEmail(from, to, subject, message);
+        cp.nextPhase();
         cp.addEmail(ce);
         ArrayList<String> contacts = cp.getProjectContacts();
         assertEquals(from, contacts.get(0));

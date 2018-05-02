@@ -3,16 +3,16 @@ public class CompanyEmail {
     private String toAddress;
     private String subjectLine;
     private String emailMessage;
-    
+
     public static final String EMAIL_VERIFICATION = "^([\\w-\\.]+){1,64}@([\\w&&[^_]]+){2,255}.[a-z]{2,}$";
-	
+
     // IMPROVEMENT -> REGEX added for checking email addresses for validity
     // By Alex Melissas and Sam Kendrick
-    
+
     // CLARITY -> Added numbering above each function according to the ID's 
     // we had for them on our test and bugfixing report from the previous lab assignment.
     // By Alex Melissas & Sam Kendrick
-    
+
     //1.1
     public CompanyEmail() {
         fromAddress = null;
@@ -27,15 +27,15 @@ public class CompanyEmail {
         toAddress = tAddress;
         subjectLine = subLine;
         emailMessage = eMessage;*/
-    	
-    	// BUG -> Addresses are not checked for validation (only getter functions called by constructor)
-    	// Spotted and fixed by Sam Kendrick and Alex Melissas
-    	
-    	setFrom(fAddress);
-    	setTo(tAddress);
-    	setSubject(subLine);
-    	setMessage(eMessage);
-    	
+
+        // BUG -> Addresses are not checked for validation (only getter functions called by constructor)
+        // Spotted and fixed by Sam Kendrick and Alex Melissas
+
+        setFrom(fAddress);
+        setTo(tAddress);
+        setSubject(subLine);
+        setMessage(eMessage);
+
     }
 
     //1.3
@@ -63,20 +63,22 @@ public class CompanyEmail {
 
     //1.7
     public void setFrom(String fromAddr) {
-        //if (fromAddr.contains("@")) {        			// IMPROVEMENT -> Unsatisfactory email checking - Use 
-    													// REGEX instead. By Sam Kendrick & Alex Melissas
-    	if (fromAddr.matches(EMAIL_VERIFICATION)) {
+        // IMPROVEMENT -> Unsatisfactory email checking - Use
+        // REGEX instead. By Sam Kendrick & Alex Melissas
+        //if (fromAddr.contains("@")) {
+        if (fromAddr.matches(EMAIL_VERIFICATION)) {
             fromAddress = fromAddr;
         }
     }
 
     //1.8
     public void setTo(String toAddr) {
-        //if (toAddr.contains("@")) { 					// IMPROVEMENT -> Unsatisfactory email checking - Use 
-														// REGEX instead. By Sam Kendrick & Alex Melissas
-    	if (toAddr.matches(EMAIL_VERIFICATION)) {
+        // IMPROVEMENT -> Unsatisfactory email checking - Use
+        // REGEX instead. By Sam Kendrick & Alex Melissas
+        //if (toAddr.contains("@")) {
+        if (toAddr.matches(EMAIL_VERIFICATION)) {
             toAddress = toAddr;
-    	}
+        }
     }
 
     //1.9
@@ -101,10 +103,15 @@ public class CompanyEmail {
 
     //1.12
     public String toString() {
-        if (subjectLine=="") { // .equals not working?
-	            return "[no subject]";				
-        } else {
-            return subjectLine;
+        try {
+            if (subjectLine.equals("")) {
+                return "[no subject]";
+            } else {
+                return subjectLine;
+            }
+        } catch (NullPointerException e) {
+//            return "[no subject]";
+            return null;
         }
     }
 }
