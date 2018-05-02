@@ -12,6 +12,8 @@ public class CompanyEmailTest {
 	
 	// ISSUE 2 -> Using set functions when testing get functions
 	
+	//ISSUE 3 -> toString using .equals("") fails test (due to null pointer exception being thrown)
+	
 	private CompanyEmail cem;
 	
 	@org.junit.Before	// Needed to create an empty CompanyEmail object to use in our tests.
