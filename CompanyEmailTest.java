@@ -134,7 +134,7 @@ public class CompanyEmailTest {
     //Test 1.12
     @org.junit.Test
     public void testToString() {
-        assertEquals(cem.subjectLine(), cem.toString());
+        assertNull(cem.toString());
         cem.setSubject("");
         assertEquals("[no subject]", cem.toString());
         cem.setSubject("a new subject");
