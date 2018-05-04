@@ -6,21 +6,23 @@ public class CompanyProjectTest {
 
     private CompanyProject cp;
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
     @org.junit.Before
     public void setup() {
         CompanyEmailSystem.GlobalProjectCounter = 0;
         cp = new CompanyProject();
     }
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//    2.1
     @org.junit.Test
     public void constructor_test() {
         CompanyProject project1 = new CompanyProject("Some Project");
         assertEquals("Some Project", project1.getPTitle());
     }
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//    2.2
     @org.junit.Test
     public void constructor_test_invalidName() {
         CompanyProject project1 = new CompanyProject("too short");
@@ -28,20 +30,23 @@ public class CompanyProjectTest {
     }
 
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//     2.3
     @org.junit.Test
     public void getPIDTest() {
         assertEquals(1, cp.getPID());
     }
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//    2.4
     @org.junit.Test
     public void getPTitleTest() {
         String title = cp.getPTitle();
         assertEquals("New Project", title);
     }
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//    2.5
 //    set title that is at least 10 characters long
     @org.junit.Test
     public void setPTitleTest() {
@@ -50,14 +55,16 @@ public class CompanyProjectTest {
         assertEquals("Project One", title);
     }
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//    2.6
     @org.junit.Test(expected = NullPointerException.class)
     public void setPTitle_null() {
         cp.setPTitle(null);
         fail("Should have thrown NullPointerException.");
     }
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//    2.7
 //    set title that is too short
     @org.junit.Test
     public void setPTitle_tooShort() {
@@ -66,7 +73,8 @@ public class CompanyProjectTest {
         assertEquals("New Project", title);
     }
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//    2.8
     @org.junit.Test
     public void isContactTest() {
         String email = "example@mail.com";
@@ -74,7 +82,8 @@ public class CompanyProjectTest {
         assertTrue(cp.isContact(email));
     }
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//    2.9
     @org.junit.Test
     public void addContactTest() {
         String email = "example@mail.com";
@@ -83,7 +92,8 @@ public class CompanyProjectTest {
         assertEquals(email, contacts.get(0));
     }
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//    2.10
     @org.junit.Test
     public void addEmail_toSecondPhase() {
         String from = "sender@email.com";
@@ -98,7 +108,8 @@ public class CompanyProjectTest {
         assertEquals(from, contacts.get(0));
     }
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//    2.11
     @org.junit.Test
     public void addEmail_invalidEmail() {
         String from = "sender@email.com";
@@ -112,7 +123,8 @@ public class CompanyProjectTest {
         assertEquals(0, contacts.size());
     }
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//    2.12
     @org.junit.Test
     public void getEmailsForPhase_currentPhase() {
         String from = "sender@email.com";
@@ -130,7 +142,8 @@ public class CompanyProjectTest {
         assertEquals(message, email.emailMessage());
     }
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//    2.13
     @org.junit.Test
     public void getEmailsForPhase_certainPhase() {
 //        advance phase twice to Implementation phase
@@ -152,14 +165,16 @@ public class CompanyProjectTest {
         assertEquals(message, email.emailMessage());
     }
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//    2.14
     @org.junit.Test
     public void nextPhaseTest() {
         cp.nextPhase();
         assertEquals("Design", cp.getPhaseByName());
     }
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//    2.15
     @org.junit.Test
     public void nextPhase_limit() {
         cp.nextPhase(); // phase 2
@@ -171,19 +186,22 @@ public class CompanyProjectTest {
         assertEquals("Completed", cp.getPhaseByName());
     }
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//    2.16
     @org.junit.Test
     public void getPhaseByNameTest() {
         assertEquals("Feasibility", cp.getPhaseByName());
     }
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//    2.17
     @org.junit.Test
     public void getPhaseByIDTest() {
         assertEquals(0, cp.getPhaseByID());
     }
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//    2.18
     @org.junit.Test
     public void getProjectContactsTest() {
         String from = "sender@email.com";
@@ -207,7 +225,8 @@ public class CompanyProjectTest {
         assertEquals(from2, cp.getProjectContacts().get(1));
     }
 
-//    Test by Raigo Jerva
+    //    Test by Raigo Jerva
+//    2.19
     @org.junit.Test
     public void toString_test() {
         String template = "New Project [Feasibility]";

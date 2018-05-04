@@ -38,7 +38,7 @@ public class CompanyProject {
     }
 
     public void setPTitle(String pTitle) {
-        if (pTitle.length() > 10 ) {
+        if (pTitle.length() > 10) {
             PTitle = pTitle;
         } else {
             PTitle = "New Project";

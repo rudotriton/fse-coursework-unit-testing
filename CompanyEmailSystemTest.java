@@ -16,6 +16,7 @@ public class CompanyEmailSystemTest {
     }
 
     //    Test by Raigo Jerva
+    //    3.1
     @org.junit.Test
     public void testMain_invalidCommand() {
         String input = "J" + "\nX";
@@ -32,6 +33,7 @@ public class CompanyEmailSystemTest {
     }
 
     //    Test by Raigo Jerva
+//3.2
     @org.junit.Test
     public void testMainExit() {
         String input = "X";
@@ -44,6 +46,7 @@ public class CompanyEmailSystemTest {
     }
 
     //    Test by Raigo Jerva
+    //3.3
     @org.junit.Test
     public void testMain_exitFromProject() {
         String input = "1" + "\nX" + "\nX";
@@ -62,6 +65,7 @@ public class CompanyEmailSystemTest {
     }
 
     //    Test by Raigo Jerva
+    //3.4
     @org.junit.Test
     public void testMain_invalidProjectSelect() {
         String input = "5" + "\nX";
@@ -78,6 +82,7 @@ public class CompanyEmailSystemTest {
     }
 
     //    Test by Raigo Jerva
+    //3.5
     @org.junit.Test
     public void testmain_addNewEmail() {
         String input = "1" + "\nA" + "\nfrom@email.com" + "\nto@email.com" +
@@ -105,6 +110,7 @@ public class CompanyEmailSystemTest {
     }
 
     //    Test by Raigo Jerva
+    //3.6
     @org.junit.Test
     public void testmain_ListEmails() {
         String input = "1" + "\nL" + "\nX" + "\nX";
@@ -135,6 +141,7 @@ public class CompanyEmailSystemTest {
     }
 
     //    Test by Raigo Jerva
+    //3.7
     @org.junit.Test
     public void testmain_ListEmailsForCertainPhase() {
         String input = "1" + "\n1" + "\nX" + "\nX";
@@ -165,6 +172,7 @@ public class CompanyEmailSystemTest {
     }
 
     //    Test by Raigo Jerva
+    //3.8
     @org.junit.Test
     public void testmain_ListEmailsForInvalidPhase() {
         String input = "1" + "\n2" + "\nX" + "\nX";
@@ -188,6 +196,7 @@ public class CompanyEmailSystemTest {
     }
 
     //    Test by Raigo Jerva
+    //3.9
     @org.junit.Test
     public void testmain_ListEmailsLimit() {
         String input = "4" + "\nL" + "\nX" + "\nX";
@@ -229,6 +238,7 @@ public class CompanyEmailSystemTest {
 
 
     //    Test by Raigo Jerva
+    //3.10
     @org.junit.Test
     public void testmain_ListPhasefolder() {
         String input = "1" + "\nF" + "\nX" + "\nX";
@@ -252,6 +262,7 @@ public class CompanyEmailSystemTest {
     }
 
     //    Test by Raigo Jerva
+    //3.11
     @org.junit.Test
     public void testmain_ListContacts() {
         String input = "1" + "\nC" + "\nX" + "\nX";
@@ -278,6 +289,7 @@ public class CompanyEmailSystemTest {
     }
 
     //  Test by Harirak Srikureja
+    //3.12
     @org.junit.Test
     public void testMainProjects() {
         String input = "P" + "\nX";
@@ -296,6 +308,7 @@ public class CompanyEmailSystemTest {
     }
 
     //    Test by Harirak Srikureja
+    //3.13
     @org.junit.Test
     public void testMain_addNamelessProject() {
         String input = "A" + "\n\n" + "\nP" + "\nX";
@@ -321,6 +334,7 @@ public class CompanyEmailSystemTest {
     }
 
     //    Test by Harirak Srikureja
+    //3.14
     @org.junit.Test
     public void testMain_addValidProject() {
         String input = "A" + "\nProj4\n" + "\nX";
@@ -337,6 +351,7 @@ public class CompanyEmailSystemTest {
     }
 
     //    Test by Harirak Srikureja
+    //3.15
     @org.junit.Test
     public void testMain_addEmailWithBlankFields() {
         String input = "1" + "\nA\n" + "\n" + "\n" + "\n" + "\n" + "\nX" + "\nX";
@@ -365,6 +380,7 @@ public class CompanyEmailSystemTest {
     }
 
     //test by Vasilis Ieropoulos
+    //3.16
     @org.junit.Test
     public void testmain_projNextPhase() {
         String input = "1" + "\nN" + "\nX" + "\nX";
@@ -390,6 +406,7 @@ public class CompanyEmailSystemTest {
     }
 
     //test by Vasilis Ieropoulos
+    //3.17
     @org.junit.Test
     public void testmain_projNextPhaseLimit() {
         String input = "1" + "\nN" + "\nN" + "\nN" + "\nN" + "\nN" + "\nN" + "\nX" +

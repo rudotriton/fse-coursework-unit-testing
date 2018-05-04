@@ -22,6 +22,7 @@ public class CompanyEmailTest {
         cem = new CompanyEmail();
     }
 
+    // By Alex Melissas & Sam Kendrick
     //Test 1.1
     @org.junit.Test
     public void testBasicConst() {
@@ -31,6 +32,7 @@ public class CompanyEmailTest {
         assertNull(cem.subjectLine());
     }
 
+    // By Alex Melissas & Sam Kendrick
     //Test 1.2
     @org.junit.Test
     public void testFullConst() {
@@ -41,6 +43,7 @@ public class CompanyEmailTest {
         assertEquals("hi dad", cem.emailMessage());
     }
 
+    // By Alex Melissas & Sam Kendrick
     //Test 1.3
     @org.junit.Test
     public void testFromAddress() {
@@ -50,6 +53,7 @@ public class CompanyEmailTest {
         assertNotNull(cem.fromAddress());
     }
 
+    // By Alex Melissas & Sam Kendrick
     //Test 1.4
     @org.junit.Test
     public void testToAddress() {
@@ -59,6 +63,7 @@ public class CompanyEmailTest {
         assertEquals("haha@ha.com", cem.toAddress());
     }
 
+    // By Alex Melissas & Sam Kendrick
     //Test 1.5
     @org.junit.Test
     public void testSubjectLine() {
@@ -67,6 +72,7 @@ public class CompanyEmailTest {
         assertEquals("hi mom", cem.subjectLine());
     }
 
+    // By Alex Melissas & Sam Kendrick
     //Test 1.6
     @org.junit.Test
     public void testEmailMessage() {
@@ -75,6 +81,7 @@ public class CompanyEmailTest {
         assertEquals("hi dad", cem.emailMessage());
     }
 
+    // By Alex Melissas & Sam Kendrick
     //Test 1.7
     @org.junit.Test
     public void testSetFrom() {
@@ -87,18 +94,21 @@ public class CompanyEmailTest {
         assertEquals("validemail@site.com", cem.fromAddress());
     }
 
+    // By Alex Melissas & Sam Kendrick
     //Test 1.8
     @org.junit.Test
     public void testSetTo() {
         assertNull(cem.toAddress());
         cem.setTo("notanemail");
         assertNull(cem.toAddress());
-        cem.setFrom("stillnotanemail@"); // this would fail because of improper email validation in class
+        cem.setTo("stillnotanemail@"); // this would fail because of improper email
+        // validation in class
         assertNull(cem.toAddress());
         cem.setTo("validemail@site.com");
         assertEquals("validemail@site.com", cem.toAddress());
     }
 
+    // By Alex Melissas & Sam Kendrick
     //Test 1.9
     @org.junit.Test
     public void testSetSubject() {
@@ -107,6 +117,7 @@ public class CompanyEmailTest {
         assertEquals("this is a subject", cem.subjectLine());
     }
 
+    // By Alex Melissas & Sam Kendrick
     //Test 1.10
     @org.junit.Test
     public void testSetMessage() {
@@ -115,22 +126,24 @@ public class CompanyEmailTest {
         assertEquals("EMAIL MESSAGE HERE HAHA", cem.emailMessage());
     }
 
+    // By Alex Melissas & Sam Kendrick
     //Test 1.11
     @org.junit.Test
     public void testIsValid() {
         assertFalse(cem.isValid());
-        cem = new CompanyEmail("banana@gmail.com", null, null, null);
+        cem = new CompanyEmail("banana@gmail.com", "", "", "");
         assertFalse(cem.isValid());
-        cem = new CompanyEmail(null, "banana@gmail.com", null, null);
+        cem = new CompanyEmail("", "banana@gmail.com", "", "");
         assertFalse(cem.isValid());
-        cem = new CompanyEmail(null, null, "hi mom", null);
+        cem = new CompanyEmail("", "", "hi mom", "");
         assertFalse(cem.isValid());
-        cem = new CompanyEmail(null, null, null, "hi dad");
+        cem = new CompanyEmail("", "", "", "hi dad");
         assertFalse(cem.isValid());
         cem = new CompanyEmail("banana@gmail.com", "banana2@gmail.com", "hi mom", "hi dad");
         assertTrue(cem.isValid());
     }
 
+    // By Alex Melissas & Sam Kendrick
     //Test 1.12
     @org.junit.Test
     public void testToString() {
