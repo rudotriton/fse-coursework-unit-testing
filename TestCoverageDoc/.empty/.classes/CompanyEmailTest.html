@@ -1,0 +1,239 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: CompanyEmailTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">&lt;empty package name&gt;</a> ]
+</div>
+
+<h1>Coverage Summary for Class: CompanyEmailTest (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CompanyEmailTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/ 14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (72/ 72)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;import static org.junit.Assert.*;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.junit.Test;
+<i>4</i>&nbsp;
+<b class="fc"><i>5</i>&nbsp;public class CompanyEmailTest {</b>
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;    // CLARITY -&gt; Added numbering above each test according to the ID&#39;s 
+<i>8</i>&nbsp;    // we had for the functions on our test and bugfixing report from the previous lab assignment.
+<i>9</i>&nbsp;    // By Alex Melissas &amp; Sam Kendrick	
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;    // ISSUE 1 -&gt; When setting values in constructor to null, it doesn&#39;t work properly. It works as if
+<i>12</i>&nbsp;    // they were set to null if we set them to the empty string &quot;&quot;.
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    // ISSUE 2 -&gt; Using set functions when testing get functions
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    //ISSUE 3 -&gt; toString using .equals(&quot;&quot;) fails test (due to null pointer exception being thrown)
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    private CompanyEmail cem;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    @org.junit.Before
+<i>21</i>&nbsp;    public void setup() {
+<b class="fc"><i>22</i>&nbsp;        cem = new CompanyEmail();</b>
+<b class="fc"><i>23</i>&nbsp;    }</b>
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    // By Alex Melissas &amp; Sam Kendrick
+<i>26</i>&nbsp;    //Test 1.1
+<i>27</i>&nbsp;    @org.junit.Test
+<i>28</i>&nbsp;    public void testBasicConst() {
+<b class="fc"><i>29</i>&nbsp;        assertNull(cem.fromAddress());</b>
+<b class="fc"><i>30</i>&nbsp;        assertNull(cem.toAddress());</b>
+<b class="fc"><i>31</i>&nbsp;        assertNull(cem.emailMessage());</b>
+<b class="fc"><i>32</i>&nbsp;        assertNull(cem.subjectLine());</b>
+<b class="fc"><i>33</i>&nbsp;    }</b>
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    // By Alex Melissas &amp; Sam Kendrick
+<i>36</i>&nbsp;    //Test 1.2
+<i>37</i>&nbsp;    @org.junit.Test
+<i>38</i>&nbsp;    public void testFullConst() {
+<b class="fc"><i>39</i>&nbsp;        cem = new CompanyEmail(&quot;haha@ha.com&quot;, &quot;lol@xd.com&quot;, &quot;hi mom&quot;, &quot;hi dad&quot;);</b>
+<b class="fc"><i>40</i>&nbsp;        assertEquals(&quot;haha@ha.com&quot;, cem.fromAddress());</b>
+<b class="fc"><i>41</i>&nbsp;        assertEquals(&quot;lol@xd.com&quot;, cem.toAddress());</b>
+<b class="fc"><i>42</i>&nbsp;        assertEquals(&quot;hi mom&quot;, cem.subjectLine());</b>
+<b class="fc"><i>43</i>&nbsp;        assertEquals(&quot;hi dad&quot;, cem.emailMessage());</b>
+<b class="fc"><i>44</i>&nbsp;    }</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    // By Alex Melissas &amp; Sam Kendrick
+<i>47</i>&nbsp;    //Test 1.3
+<i>48</i>&nbsp;    @org.junit.Test
+<i>49</i>&nbsp;    public void testFromAddress() {
+<b class="fc"><i>50</i>&nbsp;        assertNull(cem.fromAddress());</b>
+<b class="fc"><i>51</i>&nbsp;        cem = new CompanyEmail(&quot;haha@ha.com&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;);</b>
+<i>52</i>&nbsp;        //cem.setFrom(&quot;haha@ha.com&quot;);
+<b class="fc"><i>53</i>&nbsp;        assertNotNull(cem.fromAddress());</b>
+<b class="fc"><i>54</i>&nbsp;    }</b>
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;    // By Alex Melissas &amp; Sam Kendrick
+<i>57</i>&nbsp;    //Test 1.4
+<i>58</i>&nbsp;    @org.junit.Test
+<i>59</i>&nbsp;    public void testToAddress() {
+<b class="fc"><i>60</i>&nbsp;        assertNull(cem.toAddress());</b>
+<b class="fc"><i>61</i>&nbsp;        cem = new CompanyEmail(&quot;&quot;, &quot;haha@ha.com&quot;, &quot;&quot;, &quot;&quot;);</b>
+<i>62</i>&nbsp;        //cem.setTo(&quot;haha@ha.com&quot;);
+<b class="fc"><i>63</i>&nbsp;        assertEquals(&quot;haha@ha.com&quot;, cem.toAddress());</b>
+<b class="fc"><i>64</i>&nbsp;    }</b>
+<i>65</i>&nbsp;
+<i>66</i>&nbsp;    // By Alex Melissas &amp; Sam Kendrick
+<i>67</i>&nbsp;    //Test 1.5
+<i>68</i>&nbsp;    @org.junit.Test
+<i>69</i>&nbsp;    public void testSubjectLine() {
+<b class="fc"><i>70</i>&nbsp;        assertNull(cem.subjectLine());</b>
+<b class="fc"><i>71</i>&nbsp;        cem = new CompanyEmail(&quot;&quot;, &quot;&quot;, &quot;hi mom&quot;, &quot;&quot;);</b>
+<b class="fc"><i>72</i>&nbsp;        assertEquals(&quot;hi mom&quot;, cem.subjectLine());</b>
+<b class="fc"><i>73</i>&nbsp;    }</b>
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;    // By Alex Melissas &amp; Sam Kendrick
+<i>76</i>&nbsp;    //Test 1.6
+<i>77</i>&nbsp;    @org.junit.Test
+<i>78</i>&nbsp;    public void testEmailMessage() {
+<b class="fc"><i>79</i>&nbsp;        assertNull(cem.emailMessage());</b>
+<b class="fc"><i>80</i>&nbsp;        cem = new CompanyEmail(&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;hi dad&quot;);</b>
+<b class="fc"><i>81</i>&nbsp;        assertEquals(&quot;hi dad&quot;, cem.emailMessage());</b>
+<b class="fc"><i>82</i>&nbsp;    }</b>
+<i>83</i>&nbsp;
+<i>84</i>&nbsp;    // By Alex Melissas &amp; Sam Kendrick
+<i>85</i>&nbsp;    //Test 1.7
+<i>86</i>&nbsp;    @org.junit.Test
+<i>87</i>&nbsp;    public void testSetFrom() {
+<b class="fc"><i>88</i>&nbsp;        assertNull(cem.fromAddress());</b>
+<b class="fc"><i>89</i>&nbsp;        cem.setFrom(&quot;notanemail&quot;);</b>
+<b class="fc"><i>90</i>&nbsp;        assertNull(cem.fromAddress());</b>
+<b class="fc"><i>91</i>&nbsp;        cem.setFrom(&quot;stillnotanemail@&quot;); // this would fail because of improper email validation in class</b>
+<b class="fc"><i>92</i>&nbsp;        assertNull(cem.fromAddress());</b>
+<b class="fc"><i>93</i>&nbsp;        cem.setFrom(&quot;validemail@site.com&quot;);</b>
+<b class="fc"><i>94</i>&nbsp;        assertEquals(&quot;validemail@site.com&quot;, cem.fromAddress());</b>
+<b class="fc"><i>95</i>&nbsp;    }</b>
+<i>96</i>&nbsp;
+<i>97</i>&nbsp;    // By Alex Melissas &amp; Sam Kendrick
+<i>98</i>&nbsp;    //Test 1.8
+<i>99</i>&nbsp;    @org.junit.Test
+<i>100</i>&nbsp;    public void testSetTo() {
+<b class="fc"><i>101</i>&nbsp;        assertNull(cem.toAddress());</b>
+<b class="fc"><i>102</i>&nbsp;        cem.setTo(&quot;notanemail&quot;);</b>
+<b class="fc"><i>103</i>&nbsp;        assertNull(cem.toAddress());</b>
+<b class="fc"><i>104</i>&nbsp;        cem.setTo(&quot;stillnotanemail@&quot;); // this would fail because of improper email</b>
+<i>105</i>&nbsp;        // validation in class
+<b class="fc"><i>106</i>&nbsp;        assertNull(cem.toAddress());</b>
+<b class="fc"><i>107</i>&nbsp;        cem.setTo(&quot;validemail@site.com&quot;);</b>
+<b class="fc"><i>108</i>&nbsp;        assertEquals(&quot;validemail@site.com&quot;, cem.toAddress());</b>
+<b class="fc"><i>109</i>&nbsp;    }</b>
+<i>110</i>&nbsp;
+<i>111</i>&nbsp;    // By Alex Melissas &amp; Sam Kendrick
+<i>112</i>&nbsp;    //Test 1.9
+<i>113</i>&nbsp;    @org.junit.Test
+<i>114</i>&nbsp;    public void testSetSubject() {
+<b class="fc"><i>115</i>&nbsp;        assertNull(cem.subjectLine());</b>
+<b class="fc"><i>116</i>&nbsp;        cem.setSubject(&quot;this is a subject&quot;);</b>
+<b class="fc"><i>117</i>&nbsp;        assertEquals(&quot;this is a subject&quot;, cem.subjectLine());</b>
+<b class="fc"><i>118</i>&nbsp;    }</b>
+<i>119</i>&nbsp;
+<i>120</i>&nbsp;    // By Alex Melissas &amp; Sam Kendrick
+<i>121</i>&nbsp;    //Test 1.10
+<i>122</i>&nbsp;    @org.junit.Test
+<i>123</i>&nbsp;    public void testSetMessage() {
+<b class="fc"><i>124</i>&nbsp;        assertNull(cem.emailMessage());</b>
+<b class="fc"><i>125</i>&nbsp;        cem.setMessage(&quot;EMAIL MESSAGE HERE HAHA&quot;);</b>
+<b class="fc"><i>126</i>&nbsp;        assertEquals(&quot;EMAIL MESSAGE HERE HAHA&quot;, cem.emailMessage());</b>
+<b class="fc"><i>127</i>&nbsp;    }</b>
+<i>128</i>&nbsp;
+<i>129</i>&nbsp;    // By Alex Melissas &amp; Sam Kendrick
+<i>130</i>&nbsp;    //Test 1.11
+<i>131</i>&nbsp;    @org.junit.Test
+<i>132</i>&nbsp;    public void testIsValid() {
+<b class="fc"><i>133</i>&nbsp;        assertFalse(cem.isValid());</b>
+<b class="fc"><i>134</i>&nbsp;        cem = new CompanyEmail(&quot;banana@gmail.com&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;);</b>
+<b class="fc"><i>135</i>&nbsp;        assertFalse(cem.isValid());</b>
+<b class="fc"><i>136</i>&nbsp;        cem = new CompanyEmail(&quot;&quot;, &quot;banana@gmail.com&quot;, &quot;&quot;, &quot;&quot;);</b>
+<b class="fc"><i>137</i>&nbsp;        assertFalse(cem.isValid());</b>
+<b class="fc"><i>138</i>&nbsp;        cem = new CompanyEmail(&quot;&quot;, &quot;&quot;, &quot;hi mom&quot;, &quot;&quot;);</b>
+<b class="fc"><i>139</i>&nbsp;        assertFalse(cem.isValid());</b>
+<b class="fc"><i>140</i>&nbsp;        cem = new CompanyEmail(&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;hi dad&quot;);</b>
+<b class="fc"><i>141</i>&nbsp;        assertFalse(cem.isValid());</b>
+<b class="fc"><i>142</i>&nbsp;        cem = new CompanyEmail(&quot;banana@gmail.com&quot;, &quot;banana2@gmail.com&quot;, &quot;hi mom&quot;, &quot;hi dad&quot;);</b>
+<b class="fc"><i>143</i>&nbsp;        assertTrue(cem.isValid());</b>
+<b class="fc"><i>144</i>&nbsp;    }</b>
+<i>145</i>&nbsp;
+<i>146</i>&nbsp;    // By Alex Melissas &amp; Sam Kendrick
+<i>147</i>&nbsp;    //Test 1.12
+<i>148</i>&nbsp;    @org.junit.Test
+<i>149</i>&nbsp;    public void testToString() {
+<b class="fc"><i>150</i>&nbsp;        assertNull(cem.toString());</b>
+<b class="fc"><i>151</i>&nbsp;        cem.setSubject(&quot;&quot;);</b>
+<b class="fc"><i>152</i>&nbsp;        assertEquals(&quot;[no subject]&quot;, cem.toString());</b>
+<b class="fc"><i>153</i>&nbsp;        cem.setSubject(&quot;a new subject&quot;);</b>
+<b class="fc"><i>154</i>&nbsp;        assertEquals(&quot;a new subject&quot;, cem.toString());</b>
+<b class="fc"><i>155</i>&nbsp;    }</b>
+<i>156</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2018-05-04 13:00</div>
+</div>
+</body>
+</html>

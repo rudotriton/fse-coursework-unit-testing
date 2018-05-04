@@ -1,0 +1,554 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: CompanyEmailSystemTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">&lt;empty package name&gt;</a> ]
+</div>
+
+<h1>Coverage Summary for Class: CompanyEmailSystemTest (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CompanyEmailSystemTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (20/ 20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (251/ 251)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;import java.io.ByteArrayInputStream;
+<i>2</i>&nbsp;import java.io.ByteArrayOutputStream;
+<i>3</i>&nbsp;import java.io.InputStream;
+<i>4</i>&nbsp;import java.io.PrintStream;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import static org.junit.Assert.*;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;
+<b class="fc"><i>9</i>&nbsp;public class CompanyEmailSystemTest {</b>
+<i>10</i>&nbsp;
+<b class="fc"><i>11</i>&nbsp;    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();</b>
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    @org.junit.Before
+<i>14</i>&nbsp;    public void setUpStreams() {
+<b class="fc"><i>15</i>&nbsp;        System.setOut(new PrintStream(outContent));</b>
+<b class="fc"><i>16</i>&nbsp;    }</b>
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    //    Test by Raigo Jerva
+<i>19</i>&nbsp;    //    3.1
+<i>20</i>&nbsp;    @org.junit.Test
+<i>21</i>&nbsp;    public void testMain_invalidCommand() {
+<b class="fc"><i>22</i>&nbsp;        String input = &quot;J&quot; + &quot;\nX&quot;;</b>
+<b class="fc"><i>23</i>&nbsp;        InputStream in = new ByteArrayInputStream(input.getBytes());</b>
+<b class="fc"><i>24</i>&nbsp;        System.setIn(in);</b>
+<b class="fc"><i>25</i>&nbsp;        CompanyEmailSystem.main(new String[]{});</b>
+<b class="fc"><i>26</i>&nbsp;        assertEquals(&quot;What do you want to do?\n P = List [P]rojects, [num] = Open &quot; +</b>
+<b class="fc"><i>27</i>&nbsp;                &quot;Project [num], A = [A]dd Project, X = E[x]it&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>28</i>&nbsp;                &quot;Command not recognised&quot; + System.lineSeparator() +</b>
+<i>29</i>&nbsp;                &quot;What do you want to do?\n P = List [P]rojects, [num] = Open &quot; +
+<i>30</i>&nbsp;                &quot;Project [num], A = [A]dd Project, X = E[x]it Software&quot; + System
+<b class="fc"><i>31</i>&nbsp;                .lineSeparator() +</b>
+<b class="fc"><i>32</i>&nbsp;                &quot;Goodbye!&quot; + System.lineSeparator(), outContent.toString());</b>
+<b class="fc"><i>33</i>&nbsp;    }</b>
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    //    Test by Raigo Jerva
+<i>36</i>&nbsp;//3.2
+<i>37</i>&nbsp;    @org.junit.Test
+<i>38</i>&nbsp;    public void testMainExit() {
+<b class="fc"><i>39</i>&nbsp;        String input = &quot;X&quot;;</b>
+<b class="fc"><i>40</i>&nbsp;        InputStream in = new ByteArrayInputStream(input.getBytes());</b>
+<b class="fc"><i>41</i>&nbsp;        System.setIn(in);</b>
+<b class="fc"><i>42</i>&nbsp;        CompanyEmailSystem.main(new String[]{});</b>
+<b class="fc"><i>43</i>&nbsp;        assertEquals(&quot;What do you want to do?\n P = List [P]rojects, [num] = Open &quot; +</b>
+<b class="fc"><i>44</i>&nbsp;                &quot;Project [num], A = [A]dd Project, X = E[x]it&quot; + System.lineSeparator() + &quot;Goodbye!&quot; + System</b>
+<b class="fc"><i>45</i>&nbsp;                .lineSeparator(), outContent.toString());</b>
+<b class="fc"><i>46</i>&nbsp;    }</b>
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    //    Test by Raigo Jerva
+<i>49</i>&nbsp;    //3.3
+<i>50</i>&nbsp;    @org.junit.Test
+<i>51</i>&nbsp;    public void testMain_exitFromProject() {
+<b class="fc"><i>52</i>&nbsp;        String input = &quot;1&quot; + &quot;\nX&quot; + &quot;\nX&quot;;</b>
+<b class="fc"><i>53</i>&nbsp;        InputStream in = new ByteArrayInputStream(input.getBytes());</b>
+<b class="fc"><i>54</i>&nbsp;        System.setIn(in);</b>
+<b class="fc"><i>55</i>&nbsp;        CompanyEmailSystem.main(new String[]{});</b>
+<b class="fc"><i>56</i>&nbsp;        assertEquals(&quot;What do you want to do?\n P = List [P]rojects, [num] = Open &quot; +</b>
+<b class="fc"><i>57</i>&nbsp;                &quot;Project [num], A = [A]dd Project, X = E[x]it&quot; + System.lineSeparator() +</b>
+<i>58</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<i>59</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders,&quot; +
+<i>60</i>&nbsp;                &quot; N = Move to [N]ext Phase, [num] = List Emails in Phase [num],&quot; +
+<b class="fc"><i>61</i>&nbsp;                &quot; C = List [C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() + &quot;What do you want to do?\n&quot; +</b>
+<i>62</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd &quot; +
+<b class="fc"><i>63</i>&nbsp;                &quot;Project, X = E[x]it Software&quot; + System.lineSeparator() + &quot;Goodbye!&quot; + System</b>
+<b class="fc"><i>64</i>&nbsp;                .lineSeparator(), outContent.toString());</b>
+<b class="fc"><i>65</i>&nbsp;    }</b>
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    //    Test by Raigo Jerva
+<i>68</i>&nbsp;    //3.4
+<i>69</i>&nbsp;    @org.junit.Test
+<i>70</i>&nbsp;    public void testMain_invalidProjectSelect() {
+<b class="fc"><i>71</i>&nbsp;        String input = &quot;5&quot; + &quot;\nX&quot;;</b>
+<b class="fc"><i>72</i>&nbsp;        InputStream in = new ByteArrayInputStream(input.getBytes());</b>
+<b class="fc"><i>73</i>&nbsp;        System.setIn(in);</b>
+<b class="fc"><i>74</i>&nbsp;        CompanyEmailSystem.main(new String[]{});</b>
+<b class="fc"><i>75</i>&nbsp;        assertEquals(&quot;What do you want to do?\n P = List [P]rojects, [num] = Open &quot; +</b>
+<b class="fc"><i>76</i>&nbsp;                &quot;Project [num], A = [A]dd Project, X = E[x]it&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>77</i>&nbsp;                &quot;There is no project with this ID.&quot; + System.lineSeparator() +</b>
+<i>78</i>&nbsp;                &quot;What do you want to do?\n P = List [P]rojects, [num] = Open &quot; +
+<i>79</i>&nbsp;                &quot;Project [num], A = [A]dd Project, X = E[x]it Software&quot; + System
+<b class="fc"><i>80</i>&nbsp;                .lineSeparator() +</b>
+<b class="fc"><i>81</i>&nbsp;                &quot;Goodbye!&quot; + System.lineSeparator(), outContent.toString());</b>
+<b class="fc"><i>82</i>&nbsp;    }</b>
+<i>83</i>&nbsp;
+<i>84</i>&nbsp;    //    Test by Raigo Jerva
+<i>85</i>&nbsp;    //3.5
+<i>86</i>&nbsp;    @org.junit.Test
+<i>87</i>&nbsp;    public void testmain_addNewEmail() {
+<b class="fc"><i>88</i>&nbsp;        String input = &quot;1&quot; + &quot;\nA&quot; + &quot;\nfrom@email.com&quot; + &quot;\nto@email.com&quot; +</b>
+<i>89</i>&nbsp;                &quot;\nsubjectline&quot; + &quot;\nmessage&quot; + &quot;\nX&quot; + &quot;\nX&quot;;
+<b class="fc"><i>90</i>&nbsp;        InputStream in = new ByteArrayInputStream(input.getBytes());</b>
+<b class="fc"><i>91</i>&nbsp;        System.setIn(in);</b>
+<b class="fc"><i>92</i>&nbsp;        CompanyEmailSystem.main(new String[]{});</b>
+<b class="fc"><i>93</i>&nbsp;        assertEquals(&quot;What do you want to do?\n&quot; +</b>
+<b class="fc"><i>94</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it&quot; + System.lineSeparator() +</b>
+<i>95</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<b class="fc"><i>96</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>97</i>&nbsp;                &quot;Which email address is it from?&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>98</i>&nbsp;                &quot;Which email address is it to?&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>99</i>&nbsp;                &quot;What is the Subject?&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>100</i>&nbsp;                &quot;What is the Message?&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>101</i>&nbsp;                &quot;[Email added to TestProject1 [Feasibility]]&quot; + System.lineSeparator() +</b>
+<i>102</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<i>103</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = &quot; +
+<i>104</i>&nbsp;                &quot;Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List &quot; +
+<b class="fc"><i>105</i>&nbsp;                &quot;[C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() + &quot;What do &quot; +</b>
+<i>106</i>&nbsp;                &quot;you want to do?\n&quot; + &quot; P =&quot; +
+<i>107</i>&nbsp;                &quot; List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = &quot; +
+<b class="fc"><i>108</i>&nbsp;                &quot;E[x]it Software&quot; + System.lineSeparator() + &quot;Goodbye!&quot; + System.lineSeparator(), outContent</b>
+<b class="fc"><i>109</i>&nbsp;                .toString());</b>
+<b class="fc"><i>110</i>&nbsp;    }</b>
+<i>111</i>&nbsp;
+<i>112</i>&nbsp;    //    Test by Raigo Jerva
+<i>113</i>&nbsp;    //3.6
+<i>114</i>&nbsp;    @org.junit.Test
+<i>115</i>&nbsp;    public void testmain_ListEmails() {
+<b class="fc"><i>116</i>&nbsp;        String input = &quot;1&quot; + &quot;\nL&quot; + &quot;\nX&quot; + &quot;\nX&quot;;</b>
+<b class="fc"><i>117</i>&nbsp;        InputStream in = new ByteArrayInputStream(input.getBytes());</b>
+<b class="fc"><i>118</i>&nbsp;        System.setIn(in);</b>
+<b class="fc"><i>119</i>&nbsp;        CompanyEmailSystem.main(new String[]{});</b>
+<b class="fc"><i>120</i>&nbsp;        assertEquals(&quot;What do you want to do?\n&quot; +</b>
+<i>121</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X&quot; +
+<b class="fc"><i>122</i>&nbsp;                &quot; = E[x]it&quot; + System.lineSeparator() +</b>
+<i>123</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<b class="fc"><i>124</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>125</i>&nbsp;                &quot;TestProject1 [Feasibility]&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>126</i>&nbsp;                &quot;\n   From                Subject&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>127</i>&nbsp;                &quot;--------------------------------&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>128</i>&nbsp;                &quot;1) me9@me.com - this is a test subject for email9&quot; + System.lineSeparator() +</b>
+<i>129</i>&nbsp;                &quot;2) me6@me.com - this is a test subject for email6&quot; + System
+<b class="fc"><i>130</i>&nbsp;                .lineSeparator() +</b>
+<b class="fc"><i>131</i>&nbsp;                &quot;3) me3@me.com - this is a test subject for email3&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>132</i>&nbsp;                &quot;4) me0@me.com - this is a test subject for email0&quot; + System.lineSeparator() +</b>
+<i>133</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<i>134</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = &quot; +
+<i>135</i>&nbsp;                &quot;Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List &quot; +
+<b class="fc"><i>136</i>&nbsp;                &quot;[C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() + &quot;What do &quot; +</b>
+<i>137</i>&nbsp;                &quot;you want to do?\n&quot; + &quot; P =&quot; +
+<i>138</i>&nbsp;                &quot; List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = &quot; +
+<b class="fc"><i>139</i>&nbsp;                &quot;E[x]it Software&quot; + System.lineSeparator() + &quot;Goodbye!&quot; + System.lineSeparator(), outContent</b>
+<b class="fc"><i>140</i>&nbsp;                .toString());</b>
+<b class="fc"><i>141</i>&nbsp;    }</b>
+<i>142</i>&nbsp;
+<i>143</i>&nbsp;    //    Test by Raigo Jerva
+<i>144</i>&nbsp;    //3.7
+<i>145</i>&nbsp;    @org.junit.Test
+<i>146</i>&nbsp;    public void testmain_ListEmailsForCertainPhase() {
+<b class="fc"><i>147</i>&nbsp;        String input = &quot;1&quot; + &quot;\n1&quot; + &quot;\nX&quot; + &quot;\nX&quot;;</b>
+<b class="fc"><i>148</i>&nbsp;        InputStream in = new ByteArrayInputStream(input.getBytes());</b>
+<b class="fc"><i>149</i>&nbsp;        System.setIn(in);</b>
+<b class="fc"><i>150</i>&nbsp;        CompanyEmailSystem.main(new String[]{});</b>
+<b class="fc"><i>151</i>&nbsp;        assertEquals(&quot;What do you want to do?\n&quot; +</b>
+<i>152</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X&quot; +
+<b class="fc"><i>153</i>&nbsp;                &quot; = E[x]it&quot; + System.lineSeparator() +</b>
+<i>154</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<b class="fc"><i>155</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>156</i>&nbsp;                &quot;[Feasibility]&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>157</i>&nbsp;                &quot;\n   From                Subject&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>158</i>&nbsp;                &quot;--------------------------------&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>159</i>&nbsp;                &quot;1) me9@me.com - this is a test subject for email9&quot; + System.lineSeparator() +</b>
+<i>160</i>&nbsp;                &quot;2) me6@me.com - this is a test subject for email6&quot; + System
+<b class="fc"><i>161</i>&nbsp;                .lineSeparator() +</b>
+<b class="fc"><i>162</i>&nbsp;                &quot;3) me3@me.com - this is a test subject for email3&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>163</i>&nbsp;                &quot;4) me0@me.com - this is a test subject for email0&quot; + System.lineSeparator() +</b>
+<i>164</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<i>165</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = &quot; +
+<i>166</i>&nbsp;                &quot;Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List &quot; +
+<b class="fc"><i>167</i>&nbsp;                &quot;[C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() + &quot;What do &quot; +</b>
+<i>168</i>&nbsp;                &quot;you want to do?\n&quot; + &quot; P =&quot; +
+<i>169</i>&nbsp;                &quot; List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = &quot; +
+<b class="fc"><i>170</i>&nbsp;                &quot;E[x]it Software&quot; + System.lineSeparator() + &quot;Goodbye!&quot; + System.lineSeparator(), outContent</b>
+<b class="fc"><i>171</i>&nbsp;                .toString());</b>
+<b class="fc"><i>172</i>&nbsp;    }</b>
+<i>173</i>&nbsp;
+<i>174</i>&nbsp;    //    Test by Raigo Jerva
+<i>175</i>&nbsp;    //3.8
+<i>176</i>&nbsp;    @org.junit.Test
+<i>177</i>&nbsp;    public void testmain_ListEmailsForInvalidPhase() {
+<b class="fc"><i>178</i>&nbsp;        String input = &quot;1&quot; + &quot;\n2&quot; + &quot;\nX&quot; + &quot;\nX&quot;;</b>
+<b class="fc"><i>179</i>&nbsp;        InputStream in = new ByteArrayInputStream(input.getBytes());</b>
+<b class="fc"><i>180</i>&nbsp;        System.setIn(in);</b>
+<b class="fc"><i>181</i>&nbsp;        CompanyEmailSystem.main(new String[]{});</b>
+<b class="fc"><i>182</i>&nbsp;        assertEquals(&quot;What do you want to do?\n&quot; +</b>
+<i>183</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X&quot; +
+<b class="fc"><i>184</i>&nbsp;                &quot; = E[x]it&quot; + System.lineSeparator() +</b>
+<i>185</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<b class="fc"><i>186</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>187</i>&nbsp;                &quot;Error: Unknown Phase&quot; + System.lineSeparator() +</b>
+<i>188</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<i>189</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = &quot; +
+<i>190</i>&nbsp;                &quot;Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List &quot; +
+<b class="fc"><i>191</i>&nbsp;                &quot;[C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() + &quot;What do &quot; +</b>
+<i>192</i>&nbsp;                &quot;you want to do?\n&quot; + &quot; P =&quot; +
+<i>193</i>&nbsp;                &quot; List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = &quot; +
+<b class="fc"><i>194</i>&nbsp;                &quot;E[x]it Software&quot; + System.lineSeparator() + &quot;Goodbye!&quot; + System.lineSeparator(), outContent</b>
+<b class="fc"><i>195</i>&nbsp;                .toString());</b>
+<b class="fc"><i>196</i>&nbsp;    }</b>
+<i>197</i>&nbsp;
+<i>198</i>&nbsp;    //    Test by Raigo Jerva
+<i>199</i>&nbsp;    //3.9
+<i>200</i>&nbsp;    @org.junit.Test
+<i>201</i>&nbsp;    public void testmain_ListEmailsLimit() {
+<b class="fc"><i>202</i>&nbsp;        String input = &quot;4&quot; + &quot;\nL&quot; + &quot;\nX&quot; + &quot;\nX&quot;;</b>
+<b class="fc"><i>203</i>&nbsp;        InputStream in = new ByteArrayInputStream(input.getBytes());</b>
+<b class="fc"><i>204</i>&nbsp;        System.setIn(in);</b>
+<b class="fc"><i>205</i>&nbsp;        CompanyEmailSystem.main(new String[]{});</b>
+<b class="fc"><i>206</i>&nbsp;        assertEquals(&quot;What do you want to do?\n&quot; +</b>
+<i>207</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X&quot; +
+<b class="fc"><i>208</i>&nbsp;                &quot; = E[x]it&quot; + System.lineSeparator() +</b>
+<i>209</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<b class="fc"><i>210</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() +</b>
+<i>211</i>&nbsp;
+<b class="fc"><i>212</i>&nbsp;                &quot;TestProject4 [Feasibility]&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>213</i>&nbsp;                &quot;\n   From                Subject&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>214</i>&nbsp;                &quot;--------------------------------&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>215</i>&nbsp;                &quot;1) me20@me.com - this is a test subject for email20&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>216</i>&nbsp;                &quot;2) me19@me.com - this is a test subject for email19&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>217</i>&nbsp;                &quot;3) me18@me.com - this is a test subject for email18&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>218</i>&nbsp;                &quot;4) me17@me.com - this is a test subject for email17&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>219</i>&nbsp;                &quot;5) me16@me.com - this is a test subject for email16&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>220</i>&nbsp;                &quot;6) me15@me.com - this is a test subject for email15&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>221</i>&nbsp;                &quot;7) me14@me.com - this is a test subject for email14&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>222</i>&nbsp;                &quot;8) me13@me.com - this is a test subject for email13&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>223</i>&nbsp;                &quot;9) me12@me.com - this is a test subject for email12&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>224</i>&nbsp;                &quot;10) me11@me.com - this is a test subject for email11&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>225</i>&nbsp;                &quot;11) me10@me.com - this is a test subject for email10&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>226</i>&nbsp;                &quot;...&quot; + System.lineSeparator() +</b>
+<i>227</i>&nbsp;
+<i>228</i>&nbsp;
+<i>229</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<i>230</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = &quot; +
+<i>231</i>&nbsp;                &quot;Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List &quot; +
+<b class="fc"><i>232</i>&nbsp;                &quot;[C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() + &quot;What do &quot; +</b>
+<i>233</i>&nbsp;                &quot;you want to do?\n&quot; + &quot; P =&quot; +
+<i>234</i>&nbsp;                &quot; List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = &quot; +
+<b class="fc"><i>235</i>&nbsp;                &quot;E[x]it Software&quot; + System.lineSeparator() + &quot;Goodbye!&quot; + System.lineSeparator(), outContent</b>
+<b class="fc"><i>236</i>&nbsp;                .toString());</b>
+<b class="fc"><i>237</i>&nbsp;    }</b>
+<i>238</i>&nbsp;
+<i>239</i>&nbsp;
+<i>240</i>&nbsp;    //    Test by Raigo Jerva
+<i>241</i>&nbsp;    //3.10
+<i>242</i>&nbsp;    @org.junit.Test
+<i>243</i>&nbsp;    public void testmain_ListPhasefolder() {
+<b class="fc"><i>244</i>&nbsp;        String input = &quot;1&quot; + &quot;\nF&quot; + &quot;\nX&quot; + &quot;\nX&quot;;</b>
+<b class="fc"><i>245</i>&nbsp;        InputStream in = new ByteArrayInputStream(input.getBytes());</b>
+<b class="fc"><i>246</i>&nbsp;        System.setIn(in);</b>
+<b class="fc"><i>247</i>&nbsp;        CompanyEmailSystem.main(new String[]{});</b>
+<b class="fc"><i>248</i>&nbsp;        assertEquals(&quot;What do you want to do?\n&quot; +</b>
+<i>249</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X&quot; +
+<b class="fc"><i>250</i>&nbsp;                &quot; = E[x]it&quot; + System.lineSeparator() +</b>
+<i>251</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<b class="fc"><i>252</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>253</i>&nbsp;                &quot;1) Feasibility - 4 Emails&quot; + System.lineSeparator() +</b>
+<i>254</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<i>255</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = &quot; +
+<i>256</i>&nbsp;                &quot;Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List &quot; +
+<b class="fc"><i>257</i>&nbsp;                &quot;[C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() + &quot;What do &quot; +</b>
+<i>258</i>&nbsp;                &quot;you want to do?\n&quot; + &quot; P =&quot; +
+<i>259</i>&nbsp;                &quot; List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = &quot; +
+<b class="fc"><i>260</i>&nbsp;                &quot;E[x]it Software&quot; + System.lineSeparator() + &quot;Goodbye!&quot; + System.lineSeparator(), outContent</b>
+<b class="fc"><i>261</i>&nbsp;                .toString());</b>
+<b class="fc"><i>262</i>&nbsp;    }</b>
+<i>263</i>&nbsp;
+<i>264</i>&nbsp;    //    Test by Raigo Jerva
+<i>265</i>&nbsp;    //3.11
+<i>266</i>&nbsp;    @org.junit.Test
+<i>267</i>&nbsp;    public void testmain_ListContacts() {
+<b class="fc"><i>268</i>&nbsp;        String input = &quot;1&quot; + &quot;\nC&quot; + &quot;\nX&quot; + &quot;\nX&quot;;</b>
+<b class="fc"><i>269</i>&nbsp;        InputStream in = new ByteArrayInputStream(input.getBytes());</b>
+<b class="fc"><i>270</i>&nbsp;        System.setIn(in);</b>
+<b class="fc"><i>271</i>&nbsp;        CompanyEmailSystem.main(new String[]{});</b>
+<b class="fc"><i>272</i>&nbsp;        assertEquals(&quot;What do you want to do?\n&quot; +</b>
+<i>273</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X&quot; +
+<b class="fc"><i>274</i>&nbsp;                &quot; = E[x]it&quot; + System.lineSeparator() +</b>
+<i>275</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<b class="fc"><i>276</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>277</i>&nbsp;                &quot;1) me0@me.com&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>278</i>&nbsp;                &quot;2) me3@me.com&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>279</i>&nbsp;                &quot;3) me6@me.com&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>280</i>&nbsp;                &quot;4) me9@me.com&quot; + System.lineSeparator() +</b>
+<i>281</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<i>282</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = &quot; +
+<i>283</i>&nbsp;                &quot;Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List &quot; +
+<b class="fc"><i>284</i>&nbsp;                &quot;[C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() + &quot;What do &quot; +</b>
+<i>285</i>&nbsp;                &quot;you want to do?\n&quot; + &quot; P =&quot; +
+<i>286</i>&nbsp;                &quot; List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = &quot; +
+<b class="fc"><i>287</i>&nbsp;                &quot;E[x]it Software&quot; + System.lineSeparator() + &quot;Goodbye!&quot; + System.lineSeparator(), outContent</b>
+<b class="fc"><i>288</i>&nbsp;                .toString());</b>
+<b class="fc"><i>289</i>&nbsp;    }</b>
+<i>290</i>&nbsp;
+<i>291</i>&nbsp;    //  Test by Harirak Srikureja
+<i>292</i>&nbsp;    //3.12
+<i>293</i>&nbsp;    @org.junit.Test
+<i>294</i>&nbsp;    public void testMainProjects() {
+<b class="fc"><i>295</i>&nbsp;        String input = &quot;P&quot; + &quot;\nX&quot;;</b>
+<b class="fc"><i>296</i>&nbsp;        InputStream in = new ByteArrayInputStream(input.getBytes());</b>
+<b class="fc"><i>297</i>&nbsp;        System.setIn(in);</b>
+<b class="fc"><i>298</i>&nbsp;        CompanyEmailSystem.main(new String[]{});</b>
+<b class="fc"><i>299</i>&nbsp;        assertEquals(&quot;What do you want to do?\n&quot; +</b>
+<b class="fc"><i>300</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>301</i>&nbsp;                &quot;1) TestProject1 [Feasibility] - 4emails&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>302</i>&nbsp;                &quot;2) TestProject2 [Feasibility] - 3emails&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>303</i>&nbsp;                &quot;3) TestProject3 [Feasibility] - 3emails&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>304</i>&nbsp;                &quot;4) TestProject4 [Feasibility] - 21emails&quot; + System.lineSeparator() +</b>
+<i>305</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<i>306</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it Software&quot;
+<b class="fc"><i>307</i>&nbsp;                + System.lineSeparator() + &quot;Goodbye!&quot; + System.lineSeparator(), outContent.toString());</b>
+<b class="fc"><i>308</i>&nbsp;    }</b>
+<i>309</i>&nbsp;
+<i>310</i>&nbsp;    //    Test by Harirak Srikureja
+<i>311</i>&nbsp;    //3.13
+<i>312</i>&nbsp;    @org.junit.Test
+<i>313</i>&nbsp;    public void testMain_addNamelessProject() {
+<b class="fc"><i>314</i>&nbsp;        String input = &quot;A&quot; + &quot;\n\n&quot; + &quot;\nP&quot; + &quot;\nX&quot;;</b>
+<b class="fc"><i>315</i>&nbsp;        InputStream in = new ByteArrayInputStream(input.getBytes());</b>
+<b class="fc"><i>316</i>&nbsp;        System.setIn(in);</b>
+<b class="fc"><i>317</i>&nbsp;        CompanyEmailSystem.main(new String[]{});</b>
+<b class="fc"><i>318</i>&nbsp;        assertEquals(&quot;What do you want to do?\n&quot; +</b>
+<b class="fc"><i>319</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it&quot; + System.lineSeparator()</b>
+<b class="fc"><i>320</i>&nbsp;                + &quot;What is the title of the project?&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>321</i>&nbsp;                &quot;[Project added]&quot; + System.lineSeparator() +</b>
+<i>322</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<i>323</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = &quot; +
+<b class="fc"><i>324</i>&nbsp;                &quot;E[x]it Software&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>325</i>&nbsp;                &quot;1) TestProject1 [Feasibility] - 4emails&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>326</i>&nbsp;                &quot;2) TestProject2 [Feasibility] - 3emails&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>327</i>&nbsp;                &quot;3) TestProject3 [Feasibility] - 3emails&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>328</i>&nbsp;                &quot;4) TestProject4 [Feasibility] - 21emails&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>329</i>&nbsp;                &quot;5) New Project [Feasibility] - 0emails&quot; + System.lineSeparator() +</b>
+<i>330</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<i>331</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = &quot; +
+<b class="fc"><i>332</i>&nbsp;                &quot;E[x]it Software&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>333</i>&nbsp;                &quot;Goodbye!&quot; + System.lineSeparator(), outContent.toString());</b>
+<b class="fc"><i>334</i>&nbsp;    }</b>
+<i>335</i>&nbsp;
+<i>336</i>&nbsp;    //    Test by Harirak Srikureja
+<i>337</i>&nbsp;    //3.14
+<i>338</i>&nbsp;    @org.junit.Test
+<i>339</i>&nbsp;    public void testMain_addValidProject() {
+<b class="fc"><i>340</i>&nbsp;        String input = &quot;A&quot; + &quot;\nProj4\n&quot; + &quot;\nX&quot;;</b>
+<b class="fc"><i>341</i>&nbsp;        InputStream in = new ByteArrayInputStream(input.getBytes());</b>
+<b class="fc"><i>342</i>&nbsp;        System.setIn(in);</b>
+<b class="fc"><i>343</i>&nbsp;        CompanyEmailSystem.main(new String[]{});</b>
+<b class="fc"><i>344</i>&nbsp;        assertEquals(&quot;What do you want to do?\n&quot; +</b>
+<b class="fc"><i>345</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it&quot; + System.lineSeparator()</b>
+<b class="fc"><i>346</i>&nbsp;                + &quot;What is the title of the project?&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>347</i>&nbsp;                &quot;[Project added]&quot; + System.lineSeparator() +</b>
+<i>348</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<i>349</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = &quot; +
+<b class="fc"><i>350</i>&nbsp;                &quot;E[x]it Software&quot; + System.lineSeparator() + &quot;Goodbye!&quot; + System.lineSeparator(), outContent.toString());</b>
+<b class="fc"><i>351</i>&nbsp;    }</b>
+<i>352</i>&nbsp;
+<i>353</i>&nbsp;    //    Test by Harirak Srikureja
+<i>354</i>&nbsp;    //3.15
+<i>355</i>&nbsp;    @org.junit.Test
+<i>356</i>&nbsp;    public void testMain_addEmailWithBlankFields() {
+<b class="fc"><i>357</i>&nbsp;        String input = &quot;1&quot; + &quot;\nA\n&quot; + &quot;\n&quot; + &quot;\n&quot; + &quot;\n&quot; + &quot;\n&quot; + &quot;\nX&quot; + &quot;\nX&quot;;</b>
+<b class="fc"><i>358</i>&nbsp;        InputStream in = new ByteArrayInputStream(input.getBytes());</b>
+<b class="fc"><i>359</i>&nbsp;        System.setIn(in);</b>
+<b class="fc"><i>360</i>&nbsp;        CompanyEmailSystem.main(new String[]{});</b>
+<i>361</i>&nbsp;
+<b class="fc"><i>362</i>&nbsp;        assertEquals(&quot;What do you want to do?\n&quot; +</b>
+<b class="fc"><i>363</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = E[x]it&quot; + System.lineSeparator() +</b>
+<i>364</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<b class="fc"><i>365</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = Move to [N]ext Phase, [num] = List Emails in Phase [num], C = List [C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>366</i>&nbsp;                &quot;Which email address is it from?&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>367</i>&nbsp;                &quot;Which email address is it to?&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>368</i>&nbsp;                &quot;What is the Subject?&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>369</i>&nbsp;                &quot;What is the Message?&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>370</i>&nbsp;                &quot;[Email added to TestProject1 [Feasibility]]&quot; + System.lineSeparator() +</b>
+<i>371</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<i>372</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders, N = &quot; +
+<i>373</i>&nbsp;                &quot;Move&quot; +
+<i>374</i>&nbsp;                &quot; to [N]ext Phase, [num] = List Emails in Phase [num], C = List &quot; +
+<b class="fc"><i>375</i>&nbsp;                &quot;[C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() +</b>
+<i>376</i>&nbsp;                &quot;What do you want to do?\n&quot; + &quot; P =&quot; +
+<i>377</i>&nbsp;                &quot; List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X = &quot; +
+<b class="fc"><i>378</i>&nbsp;                &quot;E[x]it Software&quot; + System.lineSeparator() + &quot;Goodbye!&quot; + System.lineSeparator(), outContent</b>
+<b class="fc"><i>379</i>&nbsp;                .toString());</b>
+<b class="fc"><i>380</i>&nbsp;    }</b>
+<i>381</i>&nbsp;
+<i>382</i>&nbsp;    //test by Vasilis Ieropoulos
+<i>383</i>&nbsp;    //3.16
+<i>384</i>&nbsp;    @org.junit.Test
+<i>385</i>&nbsp;    public void testmain_projNextPhase() {
+<b class="fc"><i>386</i>&nbsp;        String input = &quot;1&quot; + &quot;\nN&quot; + &quot;\nX&quot; + &quot;\nX&quot;;</b>
+<b class="fc"><i>387</i>&nbsp;        InputStream in = new ByteArrayInputStream(input.getBytes());</b>
+<b class="fc"><i>388</i>&nbsp;        System.setIn(in);</b>
+<b class="fc"><i>389</i>&nbsp;        CompanyEmailSystem.main(new String[]{});</b>
+<b class="fc"><i>390</i>&nbsp;        assertEquals(&quot;What do you want to do?\n&quot; +</b>
+<i>391</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X&quot; +
+<b class="fc"><i>392</i>&nbsp;                &quot; = E[x]it&quot; + System.lineSeparator() +</b>
+<i>393</i>&nbsp;                &quot;What do you want to do?\n&quot; + &quot; L = [L]ist Emails, A = [A]dd Email, F =&quot; +
+<i>394</i>&nbsp;                &quot; List Phase [F]olders, N = Move to [N]ext Phase, [num] = List &quot; +
+<i>395</i>&nbsp;                &quot;Emails in Phase [num], C = List [C]ontacts, X =  E[x]it &quot; +
+<b class="fc"><i>396</i>&nbsp;                &quot;Project&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>397</i>&nbsp;                &quot;[Phase changed: TestProject1 [Design]&quot; + System.lineSeparator() + &quot;What do you want to do?\n&quot; +</b>
+<i>398</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders,&quot; +
+<i>399</i>&nbsp;                &quot; N = Move to [N]ext Phase, [num] = List Emails in Phase [num],&quot; +
+<i>400</i>&nbsp;                &quot; C = List [C]ontacts, X =  E[x]it Project&quot; + System
+<b class="fc"><i>401</i>&nbsp;                .lineSeparator() + &quot;What do you want to do?\n&quot; +</b>
+<i>402</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd &quot; +
+<b class="fc"><i>403</i>&nbsp;                &quot;Project, X = E[x]it Software&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>404</i>&nbsp;                &quot;Goodbye!&quot; + System.lineSeparator(), outContent.toString());</b>
+<i>405</i>&nbsp;
+<b class="fc"><i>406</i>&nbsp;    }</b>
+<i>407</i>&nbsp;
+<i>408</i>&nbsp;    //test by Vasilis Ieropoulos
+<i>409</i>&nbsp;    //3.17
+<i>410</i>&nbsp;    @org.junit.Test
+<i>411</i>&nbsp;    public void testmain_projNextPhaseLimit() {
+<b class="fc"><i>412</i>&nbsp;        String input = &quot;1&quot; + &quot;\nN&quot; + &quot;\nN&quot; + &quot;\nN&quot; + &quot;\nN&quot; + &quot;\nN&quot; + &quot;\nN&quot; + &quot;\nX&quot; +</b>
+<i>413</i>&nbsp;                &quot;\nX&quot;;
+<b class="fc"><i>414</i>&nbsp;        InputStream in = new ByteArrayInputStream(input.getBytes());</b>
+<b class="fc"><i>415</i>&nbsp;        System.setIn(in);</b>
+<b class="fc"><i>416</i>&nbsp;        CompanyEmailSystem.main(new String[]{});</b>
+<b class="fc"><i>417</i>&nbsp;        assertEquals(&quot;What do you want to do?\n&quot; +</b>
+<i>418</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd Project, X&quot; +
+<b class="fc"><i>419</i>&nbsp;                &quot; = E[x]it&quot; + System.lineSeparator() +</b>
+<i>420</i>&nbsp;                &quot;What do you want to do?\n&quot; + &quot; L = [L]ist Emails, A = [A]dd Email, F =&quot; +
+<i>421</i>&nbsp;                &quot; List Phase [F]olders, N = Move to [N]ext Phase, [num] = List &quot; +
+<i>422</i>&nbsp;                &quot;Emails in Phase [num], C = List [C]ontacts, X =  E[x]it &quot; +
+<b class="fc"><i>423</i>&nbsp;                &quot;Project&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>424</i>&nbsp;                &quot;[Phase changed: TestProject1 [Design]&quot; + System.lineSeparator() + &quot;What do you want to do?\n&quot; +</b>
+<i>425</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders,&quot; +
+<i>426</i>&nbsp;                &quot; N = Move to [N]ext Phase, [num] = List Emails in Phase [num],&quot; +
+<i>427</i>&nbsp;                &quot; C = List [C]ontacts, X =  E[x]it Project&quot; + System
+<b class="fc"><i>428</i>&nbsp;                .lineSeparator() +</b>
+<i>429</i>&nbsp;                &quot;[Phase changed: TestProject1 [Implementation]&quot; + System.lineSeparator
+<b class="fc"><i>430</i>&nbsp;                () + &quot;What do you want to do?\n&quot; +</b>
+<i>431</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders,&quot; +
+<i>432</i>&nbsp;                &quot; N = Move to [N]ext Phase, [num] = List Emails in Phase [num],&quot; +
+<i>433</i>&nbsp;                &quot; C = List [C]ontacts, X =  E[x]it Project&quot; + System
+<b class="fc"><i>434</i>&nbsp;                .lineSeparator() +</b>
+<b class="fc"><i>435</i>&nbsp;                &quot;[Phase changed: TestProject1 [Testing]&quot; + System.lineSeparator() +</b>
+<i>436</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<i>437</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders,&quot; +
+<i>438</i>&nbsp;                &quot; N = Move to [N]ext Phase, [num] = List Emails in Phase [num],&quot; +
+<i>439</i>&nbsp;                &quot; C = List [C]ontacts, X =  E[x]it Project&quot; + System
+<b class="fc"><i>440</i>&nbsp;                .lineSeparator() +</b>
+<b class="fc"><i>441</i>&nbsp;                &quot;[Phase changed: TestProject1 [Deployment]&quot; + System.lineSeparator() +</b>
+<i>442</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<i>443</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders,&quot; +
+<i>444</i>&nbsp;                &quot; N = Move to [N]ext Phase, [num] = List Emails in Phase [num],&quot; +
+<i>445</i>&nbsp;                &quot; C = List [C]ontacts, X =  E[x]it Project&quot; + System
+<b class="fc"><i>446</i>&nbsp;                .lineSeparator() +</b>
+<b class="fc"><i>447</i>&nbsp;                &quot;[Phase changed: TestProject1 [Completed]&quot; + System.lineSeparator() +</b>
+<i>448</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<i>449</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders,&quot; +
+<i>450</i>&nbsp;                &quot; N = Move to [N]ext Phase, [num] = List Emails in Phase [num],&quot; +
+<b class="fc"><i>451</i>&nbsp;                &quot; C = List [C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>452</i>&nbsp;                &quot;Project already in last phase.&quot; + System.lineSeparator() +</b>
+<i>453</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<i>454</i>&nbsp;                &quot; L = [L]ist Emails, A = [A]dd Email, F = List Phase [F]olders,&quot; +
+<i>455</i>&nbsp;                &quot; N = Move to [N]ext Phase, [num] = List Emails in Phase [num],&quot; +
+<b class="fc"><i>456</i>&nbsp;                &quot; C = List [C]ontacts, X =  E[x]it Project&quot; + System.lineSeparator() +</b>
+<i>457</i>&nbsp;                &quot;What do you want to do?\n&quot; +
+<i>458</i>&nbsp;                &quot; P = List [P]rojects, [num] = Open Project [num], A = [A]dd &quot; +
+<b class="fc"><i>459</i>&nbsp;                &quot;Project, X = E[x]it Software&quot; + System.lineSeparator() +</b>
+<b class="fc"><i>460</i>&nbsp;                &quot;Goodbye!&quot; + System.lineSeparator(), outContent.toString());</b>
+<i>461</i>&nbsp;
+<b class="fc"><i>462</i>&nbsp;    }</b>
+<i>463</i>&nbsp;
+<i>464</i>&nbsp;    @org.junit.After
+<i>465</i>&nbsp;    public void cleanUpStreams() {
+<b class="fc"><i>466</i>&nbsp;        System.setOut(System.out);</b>
+<b class="fc"><i>467</i>&nbsp;        System.setErr(System.err);</b>
+<b class="fc"><i>468</i>&nbsp;    }</b>
+<i>469</i>&nbsp;
+<i>470</i>&nbsp;
+<i>471</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2018-05-04 13:00</div>
+</div>
+</body>
+</html>
