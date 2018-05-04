@@ -94,7 +94,7 @@ public class CompanyEmailTest {
         cem.setTo("notanemail");
         assertNull(cem.toAddress());
         cem.setFrom("stillnotanemail@"); // this would fail because of improper email validation in class
-        assertNull(cem.fromAddress());
+        assertNull(cem.toAddress());
         cem.setTo("validemail@site.com");
         assertEquals("validemail@site.com", cem.toAddress());
     }
@@ -119,13 +119,13 @@ public class CompanyEmailTest {
     @org.junit.Test
     public void testIsValid() {
         assertFalse(cem.isValid());
-        cem = new CompanyEmail("banana@gmail.com", "", "", "");
+        cem = new CompanyEmail("banana@gmail.com", null, null, null);
         assertFalse(cem.isValid());
-        cem = new CompanyEmail("", "banana@gmail.com", "", "");
+        cem = new CompanyEmail(null, "banana@gmail.com", null, null);
         assertFalse(cem.isValid());
-        cem = new CompanyEmail("", "", "hi mom", "");
+        cem = new CompanyEmail(null, null, "hi mom", null);
         assertFalse(cem.isValid());
-        cem = new CompanyEmail("", "", "", "hi dad");
+        cem = new CompanyEmail(null, null, null, "hi dad");
         assertFalse(cem.isValid());
         cem = new CompanyEmail("banana@gmail.com", "banana2@gmail.com", "hi mom", "hi dad");
         assertTrue(cem.isValid());
